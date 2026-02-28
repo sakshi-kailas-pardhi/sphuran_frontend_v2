@@ -102,8 +102,8 @@ const Footer = memo(() => {
                 </a>
                 <div className="mt-4">
                   <p className="text-xs mb-1">Developer Contact:</p>
-                  <a href="mailto:aminulislam@eesiiests.org" className="block text-primary hover:underline">
-                    aminulislam@eesiiests.org
+                  <a href="mailto:aminul@eesiiests.org" className="block text-primary hover:underline">
+                    aminul@eesiiests.org
                   </a>
                 </div>
               </div>
