@@ -1,6 +1,6 @@
 import { useState, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, ChevronDown, ChevronUp } from 'lucide-react';
+import { ArrowLeft, ChevronDown, ChevronUp, X, User } from 'lucide-react';
 import Footer from '@/components/Footer';
 import { BackgroundBeams } from '@/components/ui/background-beams';
 import { SEO } from '@/components/SEO';
@@ -8,30 +8,109 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { useInView } from '@/hooks/use-in-view';
 import { teamData, type TeamMember, type Department } from '@/lib/teamData';
 
-const TeamSection = memo(({ title, members, expandable = false }: { title: string; members: TeamMember[]; expandable?: boolean }) => {
+// Extended type for modal display
+interface SelectedMember extends TeamMember {
+  displayRole?: string;
+}
+
+// Profile Modal Component
+const ProfileModal = ({ member, onClose }: { member: SelectedMember | null; onClose: () => void }) => {
+  if (!member) return null;
+  
+  return (
+    <div 
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+      onClick={onClose}
+    >
+      <div 
+        className="relative bg-card border border-border rounded-xl p-0 w-[90vw] max-w-3xl h-[280px] md:h-[350px] overflow-hidden animate-in zoom-in-95 duration-200 flex flex-col md:flex-row"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-3 right-3 p-1.5 rounded-full bg-black/50 hover:bg-black/70 transition-colors z-10"
+        >
+          <X className="w-5 h-5 text-white" />
+        </button>
+        
+        {member.image && (
+          <div className="w-full md:w-1/2 h-40 md:h-full flex-shrink-0">
+            <img 
+              src={member.image} 
+              alt={member.name}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        )}
+        
+        <div className="flex-1 p-6 md:p-8 flex flex-col justify-center">
+          <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">
+            {member.name}
+          </h3>
+          
+          {member.year && (
+            <p className="text-base text-accent mb-3">
+              {member.year}<sup>{member.year === 1 ? 'st' : member.year === 2 ? 'nd' : member.year === 3 ? 'rd' : 'th'}</sup> Year
+            </p>
+          )}
+          
+          {(member.displayRole || member.role) && (
+            <div className="mt-2">
+              <p className="font-display text-xs uppercase tracking-wider text-muted-foreground mb-1">Role</p>
+              <p className="font-body text-base text-foreground">{member.displayRole || member.role}</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const TeamSection = memo(({ title, members, expandable = false, onMemberClick, departmentName }: { title: string; members: TeamMember[]; expandable?: boolean; onMemberClick: (member: SelectedMember) => void; departmentName?: string }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const displayMembers = expandable && !isExpanded ? members.slice(0, 3) : members;
 
   return (
     <div className="mb-6">
       <h3 className="font-display text-sm tracking-wider uppercase text-primary mb-3">{title}</h3>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
         {displayMembers.map((member, index) => (
           <div 
             key={index}
-            className="p-4 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors"
+            onClick={() => member.image && onMemberClick({ 
+              ...member, 
+              displayRole: departmentName 
+                ? (title ? `${title} - ${departmentName}` : departmentName)
+                : (title || member.role)
+            })}
+            className={`bg-card border border-border rounded-lg hover:border-primary/50 transition-colors flex flex-col overflow-hidden ${member.image ? 'cursor-pointer' : ''}`}
           >
-            <p className="font-display text-sm font-semibold text-foreground">
-              {member.name}
-              {member.year && (
-                <span className="text-xs text-accent ml-2 font-normal">
-                  ({member.year}<sup>{member.year === 1 ? 'st' : member.year === 2 ? 'nd' : member.year === 3 ? 'rd' : 'th'}</sup> year)
-                </span>
+            <div className="aspect-square w-full overflow-hidden bg-muted">
+              {member.image ? (
+                <img 
+                  src={member.image} 
+                  alt={member.name}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <User className="w-1/3 h-1/3 text-muted-foreground/50" />
+                </div>
               )}
-            </p>
-            {member.role && (
-              <p className="font-body text-xs text-muted-foreground mt-1">{member.role}</p>
-            )}
+            </div>
+            <div className="p-3 text-center">
+              <p className="font-display text-xs sm:text-sm font-semibold text-foreground leading-tight">
+                {member.name}
+              </p>
+              {member.year && (
+                <p className="text-[10px] sm:text-xs text-accent mt-1">
+                  {member.year}<sup>{member.year === 1 ? 'st' : member.year === 2 ? 'nd' : member.year === 3 ? 'rd' : 'th'}</sup> year
+                </p>
+              )}
+              {member.role && (
+                <p className="font-body text-[10px] sm:text-xs text-muted-foreground mt-1 line-clamp-2">{member.role}</p>
+              )}
+            </div>
           </div>
         ))}
       </div>
@@ -61,10 +140,12 @@ TeamSection.displayName = 'TeamSection';
 
 const DepartmentSection = memo(({ 
   title, 
-  department 
+  department,
+  onMemberClick
 }: { 
   title: string; 
-  department: Department 
+  department: Department;
+  onMemberClick: (member: SelectedMember) => void;
 }) => {
   return (
     <div className="mb-8">
@@ -72,9 +153,9 @@ const DepartmentSection = memo(({
         {title}
       </h2>
       <div className="space-y-6">
-        <TeamSection title="Head" members={department.head} />
-        <TeamSection title="Associate Head" members={department.associateHead} expandable={department.associateHead.length > 3} />
-        <TeamSection title="Associates" members={department.associates} expandable={department.associates.length > 3} />
+        <TeamSection title="Head" members={department.head} onMemberClick={onMemberClick} departmentName={title} />
+        <TeamSection title="Associate Head" members={department.associateHead} expandable={department.associateHead.length > 3} onMemberClick={onMemberClick} departmentName={title} />
+        <TeamSection title="Associates" members={department.associates} expandable={department.associates.length > 3} onMemberClick={onMemberClick} departmentName={title} />
       </div>
     </div>
   );
@@ -84,10 +165,16 @@ DepartmentSection.displayName = 'DepartmentSection';
 
 const Team = () => {
   const navigate = useNavigate();
+  const [selectedMember, setSelectedMember] = useState<SelectedMember | null>(null);
+  
+  const handleMemberClick = (member: SelectedMember) => {
+    setSelectedMember(member);
+  };
   
   // Animation refs
   const heroRef = useInView({ threshold: 0.2, triggerOnce: true });
   const facultyRef = useInView({ threshold: 0.2, triggerOnce: true });
+  const secretaryRef = useInView({ threshold: 0.2, triggerOnce: true });
   const coordinatorsRef = useInView({ threshold: 0.2, triggerOnce: true });
   const jointCoordinatorsRef = useInView({ threshold: 0.2, triggerOnce: true });
   const departmentsRef = useInView({ threshold: 0.1, rootMargin: '200px', triggerOnce: true });
@@ -161,13 +248,36 @@ const Team = () => {
             {teamData.faculty.map((member, index) => (
               <div 
                 key={index}
-                className="p-6 bg-card border-2 border-primary/30 rounded-lg hover:border-primary transition-colors"
+                onClick={() => member.image && handleMemberClick(member)}
+                className={`p-6 bg-card border-2 border-primary/30 rounded-lg hover:border-primary transition-colors flex flex-col items-center text-center ${member.image ? 'cursor-pointer' : ''}`}
               >
+                {member.image && (
+                  <img 
+                    src={member.image} 
+                    alt={member.name}
+                    className="w-28 h-28 rounded-full object-cover border-2 border-primary/50 mb-4"
+                  />
+                )}
                 <p className="font-display text-base font-bold text-foreground mb-2">{member.name}</p>
                 <p className="font-body text-xs text-muted-foreground">{member.role}</p>
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Secretary */}
+        <div 
+          ref={secretaryRef.ref}
+          className={`mb-12 transition-all duration-700 ${
+            secretaryRef.isInView 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-10'
+          }`}
+        >
+          <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 border-b border-border pb-3">
+            Secretary
+          </h2>
+          <TeamSection title="" members={teamData.secretary} onMemberClick={handleMemberClick} departmentName="Secretary" />
         </div>
 
         {/* Main Coordinators */}
@@ -182,7 +292,7 @@ const Team = () => {
           <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 border-b border-border pb-3">
             Main Coordinators
           </h2>
-          <TeamSection title="" members={teamData.mainCoordinators} />
+          <TeamSection title="" members={teamData.mainCoordinators} onMemberClick={handleMemberClick} departmentName="Main Coordinator" />
         </div>
 
         {/* Joint Coordinators */}
@@ -197,7 +307,7 @@ const Team = () => {
           <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 border-b border-border pb-3">
             Joint Coordinators
           </h2>
-          <TeamSection title="" members={teamData.jointCoordinators} />
+          <TeamSection title="" members={teamData.jointCoordinators} onMemberClick={handleMemberClick} departmentName="Joint Coordinator" />
         </div>
 
         {/* Departments */}
@@ -209,23 +319,28 @@ const Team = () => {
               : 'opacity-0 translate-y-10'
           }`}
         >
-        <DepartmentSection title="Finance & Audit" department={teamData.financeAudit} />
-        <DepartmentSection title="Website" department={teamData.website} />
-        <DepartmentSection title="Design" department={teamData.design} />
-        <DepartmentSection title="Sponsorship" department={teamData.sponsorship} />
-        <DepartmentSection title="Publicity" department={teamData.publicity} />
-        <DepartmentSection title="Event Management" department={teamData.eventManagement} />
-        <DepartmentSection title="Travel & Logistics" department={teamData.travelLogistics} />
+        <DepartmentSection title="Finance & Audit" department={teamData.financeAudit} onMemberClick={handleMemberClick} />
+        <DepartmentSection title="Website" department={teamData.website} onMemberClick={handleMemberClick} />
+        <DepartmentSection title="Design" department={teamData.design} onMemberClick={handleMemberClick} />
+        <DepartmentSection title="Sponsorship" department={teamData.sponsorship} onMemberClick={handleMemberClick} />
+        <DepartmentSection title="Publicity" department={teamData.publicity} onMemberClick={handleMemberClick} />
+        <DepartmentSection title="Event Management" department={teamData.eventManagement} onMemberClick={handleMemberClick} />
+        <DepartmentSection title="Travel & Logistics" department={teamData.travelLogistics} onMemberClick={handleMemberClick} />
 
         {/* Volunteers */}
         <div className="mb-8">
           <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 border-b border-border pb-3">
             Volunteers
           </h2>
-          <TeamSection title="" members={teamData.volunteers} />
+          <TeamSection title="" members={teamData.volunteers} onMemberClick={handleMemberClick} departmentName="Volunteer" />
         </div>
         </div>
       </div>
+
+      {/* Profile Modal */}
+      {selectedMember && (
+        <ProfileModal member={selectedMember} onClose={() => setSelectedMember(null)} />
+      )}
 
       {/* Footer */}
       <Footer />
