@@ -234,14 +234,14 @@ const Navbar = memo(() => {
               </div>
             </a>
 
-            {/* Desktop Navigation with ChipsTab - Hidden on mobile */}
-            <div className="hidden lg:block">
+            {/* Desktop Navigation with ChipsTab - Hidden for now */}
+            {/* <div className="hidden lg:block">
               <ChipsTab
                 tabs={navItems}
                 activeTab={activeSection}
                 onSelect={(tab) => scrollToSection(tab.href ?? '')}
               />
-            </div>
+            </div> */}
 
             {/* CTA Button - Hidden on mobile */}
             <div className="hidden lg:flex items-center gap-4">
