@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Image as ImageIcon } from 'lucide-react';
 import { wrap } from 'popmotion';
@@ -7,6 +7,87 @@ import Footer from '@/components/Footer';
 import { SEO } from '@/components/SEO';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { GALLERY_IMAGES } from '@/lib/assets';
+
+// Lazy Image Component with Intersection Observer
+const LazyImage = ({ 
+    src, 
+    alt, 
+    title, 
+    index, 
+    onClick 
+}: { 
+    src: string; 
+    alt: string; 
+    title: string; 
+    index: number; 
+    onClick: () => void;
+}) => {
+    const [isInView, setIsInView] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const imgRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsInView(true);
+                    observer.disconnect();
+                }
+            },
+            {
+                rootMargin: '100px', // Start loading 100px before entering viewport
+                threshold: 0.01
+            }
+        );
+
+        if (imgRef.current) {
+            observer.observe(imgRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+    return (
+        <motion.div
+            ref={imgRef}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.3) }}
+            className="group relative aspect-square overflow-hidden rounded-lg cursor-pointer bg-muted"
+            onClick={onClick}
+        >
+            {/* Skeleton placeholder */}
+            {(!isInView || !isLoaded) && (
+                <div className="absolute inset-0 flex items-center justify-center bg-muted animate-pulse">
+                    <ImageIcon className="w-8 h-8 text-muted-foreground/50" />
+                </div>
+            )}
+            
+            {/* Actual image - only render when in view */}
+            {isInView && (
+                <img
+                    src={src}
+                    alt={alt}
+                    loading="lazy"
+                    onLoad={() => setIsLoaded(true)}
+                    className={`w-full h-full object-cover transition-all duration-500 ${
+                        isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+                    } group-hover:scale-110`}
+                />
+            )}
+            
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    whileHover={{ opacity: 1, y: 0 }}
+                    className="text-white font-medium text-sm md:text-base px-4 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                    {title}
+                </motion.p>
+            </div>
+        </motion.div>
+    );
+};
 
 // Animation variants for smooth sliding transitions
 const variants = {
@@ -33,7 +114,6 @@ const swipePower = (offset: number, velocity: number) => {
 
 const Gallery = () => {
     const [selectedImage, setSelectedImage] = useState<number | null>(null);
-    const [imageLoaded, setImageLoaded] = useState<{ [key: number]: boolean }>({});
     const [[page, direction], setPage] = useState([0, 0]);
 
     const imageIndex = selectedImage !== null ? wrap(0, GALLERY_IMAGES.length, page) : 0;
@@ -119,37 +199,14 @@ const Gallery = () => {
                     <div className="container mx-auto max-w-7xl">
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
                             {GALLERY_IMAGES.map((image, index) => (
-                                <motion.div
+                                <LazyImage
                                     key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: index * 0.05 }}
-                                    className="group relative aspect-square overflow-hidden rounded-lg cursor-pointer bg-muted"
+                                    src={image.src}
+                                    alt={image.alt}
+                                    title={image.title}
+                                    index={index}
                                     onClick={() => setSelectedImage(index)}
-                                >
-                                    {!imageLoaded[index] && (
-                                        <div className="absolute inset-0 flex items-center justify-center">
-                                            <ImageIcon className="w-8 h-8 text-muted-foreground animate-pulse" />
-                                        </div>
-                                    )}
-                                    <img
-                                        src={image.src}
-                                        alt={image.alt}
-                                        loading="lazy"
-                                        onLoad={() => setImageLoaded(prev => ({ ...prev, [index]: true }))}
-                                        className={`w-full h-full object-cover transition-all duration-500 ${imageLoaded[index] ? 'opacity-100' : 'opacity-0'
-                                            } group-hover:scale-110`}
-                                    />
-                                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
-                                        <motion.p
-                                            initial={{ opacity: 0, y: 10 }}
-                                            whileHover={{ opacity: 1, y: 0 }}
-                                            className="text-white font-medium text-sm md:text-base px-4 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                        >
-                                            {image.title}
-                                        </motion.p>
-                                    </div>
-                                </motion.div>
+                                />
                             ))}
                         </div>
                     </div>

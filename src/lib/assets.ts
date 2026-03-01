@@ -103,78 +103,66 @@ export const IMAGES = {
 // Gallery Images
 export const GALLERY_IMAGES = [
   {
-    src: `${CLOUDINARY_BASE}/v1770546806/sphuran-x-icche_gkfhoq.jpg`,
-    alt: 'SPHURAN x ICCHE Collaboration Event',
-    title: 'SPHURAN x ICCHE',
-    description: 'A memorable collaboration showcasing innovation and creativity'
-  },
-  {
-    src: `${CLOUDINARY_BASE}/v1770546105/sphuran-x-rxb_vhuylt.jpg`,
-    alt: 'SPHURAN x RXB Event Highlights',
-    title: 'SPHURAN x RXB',
-    description: 'Exciting moments from the RXB collaboration event'
-  },
-  {
-    src: `${CLOUDINARY_BASE}/v1770536102/sphuran-logo_a6mzzi.png`,
-    alt: 'SPHURAN 4.0 Official Logo',
-    title: 'SPHURAN 4.0 Branding',
-    description: 'The official logo representing our technical festival'
-  },
-  {
-    src: `${CLOUDINARY_BASE}/v1770536100/ees-logo_vjjwxn.png`,
-    alt: 'Electrical Engineering Society Logo',
-    title: 'EES IIEST Shibpur',
-    description: 'Electrical Engineering Society - The organizing body'
-  },
-  {
-    src: `${CLOUDINARY_BASE}/v1770546216/undraw_meeting_dunc_dctfbx.svg`,
-    alt: 'Alumni Meeting Illustration',
+    src: `https://res.cloudinary.com/dwr8472qb/image/upload/v1772354028/DSC_0129_pbiqpa.jpg`,
+    alt: 'Alumni Meeting Interaction',
     title: 'Alumni Meet',
     description: 'Connecting generations of electrical engineers'
   },
   // Add more gallery images here
   {
-    src: `${CLOUDINARY_BASE}/v1770546806/sphuran-x-icche_gkfhoq.jpg`,
+    src: `https://res.cloudinary.com/dwr8472qb/image/upload/v1772354571/DSC_0789_n1wfo4.jpg`,
     alt: 'Technical Workshop Session',
     title: 'Workshop Moments',
     description: 'Hands-on learning and skill development sessions'
   },
   {
-    src: `${CLOUDINARY_BASE}/v1770546105/sphuran-x-rxb_vhuylt.jpg`,
-    alt: 'Competition Highlights',
-    title: 'Tech Competitions',
-    description: 'Students showcasing their technical prowess'
-  },
-  {
-    src: `${CLOUDINARY_BASE}/v1770546806/sphuran-x-icche_gkfhoq.jpg`,
+    src: `https://res.cloudinary.com/dwr8472qb/image/upload/v1772354086/DSC_0031_xp4yqf.jpg`,
     alt: 'Opening Ceremony',
     title: 'Grand Opening',
     description: 'The spectacular inauguration of SPHURAN 4.0'
   },
   {
-    src: `${CLOUDINARY_BASE}/v1770546105/sphuran-x-rxb_vhuylt.jpg`,
-    alt: 'Cultural Evening',
-    title: 'Cultural Night',
-    description: 'An evening filled with music, dance, and entertainment'
-  },
-  {
-    src: `${CLOUDINARY_BASE}/v1770546806/sphuran-x-icche_gkfhoq.jpg`,
+    src: `https://res.cloudinary.com/dwr8472qb/image/upload/v1772354640/DSC_0924_pouhwk.jpg`,
     alt: 'Guest Lecture',
     title: 'Guest Speakers',
     description: 'Industry experts sharing their knowledge and experience'
   },
   {
-    src: `${CLOUDINARY_BASE}/v1770546105/sphuran-x-rxb_vhuylt.jpg`,
+    src: `https://res.cloudinary.com/dwr8472qb/image/upload/v1772354315/DSC_0481_tkoyap.jpg`,
     alt: 'Team Activities',
     title: 'Team Building',
     description: 'Collaborative activities fostering teamwork and creativity'
   },
   {
-    src: `${CLOUDINARY_BASE}/v1770546806/sphuran-x-icche_gkfhoq.jpg`,
+    src: `https://res.cloudinary.com/dwr8472qb/image/upload/v1772354592/DSC_0838_nk8aeo.jpg`,
     alt: 'Prize Distribution Ceremony',
     title: 'Award Ceremony',
     description: 'Celebrating the achievements of talented participants'
   },
+  {
+    src: `https://res.cloudinary.com/dwr8472qb/image/upload/v1772354552/DSC_0572_dklipe.jpg`,
+    alt: 'SPHURAN 2.0 Banner',
+    title: 'SPHURAN 2.0 Memories',
+    description: 'A glimpse into the past with our previous edition’s highlights'
+  },
+  {
+    src: `https://res.cloudinary.com/dwr8472qb/image/upload/v1772354566/DSC_0712_sxgche.jpg`,
+    alt: 'ELECTROQUIP',
+    title: 'ELECTROQUIP 2022',
+    description: 'Showcasing the best of technical exhibitions and projects'
+  },
+  {
+    src: `https://res.cloudinary.com/dwr8472qb/image/upload/v1772354020/DSC_0003_nj8sl1.jpg`,
+    alt: 'College Entrance Banner',
+    title: 'Welcome Banner',
+    description: 'SPHURAN banner installed at the college entrance'
+  },
+  {
+    src: `https://res.cloudinary.com/dwr8472qb/image/upload/v1772354422/DSC_0233_lovexh.jpg`,
+    alt: 'Students participating in Electroquip quiz',
+    title: 'Electroquip Quiz',
+    description: 'Students giving the quiz during the Electroquip event'
+  }
 ];
 
 // Helper to get all sponsors as an array
