@@ -166,7 +166,36 @@ const Gallery = () => {
                 url="https://sphuran.eesiiests.org/gallery"
             />
 
-            <div className="min-h-screen bg-background">
+            <div className="min-h-screen bg-background relative">
+                {/* Aesthetic Texture Background */}
+                <div className="fixed inset-0 pointer-events-none z-0">
+                    {/* Gradient base */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/10" />
+                    
+                    {/* Noise texture overlay */}
+                    <div 
+                        className="absolute inset-0 opacity-30"
+                        style={{
+                            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                        }}
+                    />
+                    
+                    {/* Subtle grid pattern */}
+                    <div 
+                        className="absolute inset-0 opacity-[0.08]"
+                        style={{
+                            backgroundImage: `linear-gradient(hsl(var(--primary) / 0.3) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary) / 0.3) 1px, transparent 1px)`,
+                            backgroundSize: '50px 50px',
+                        }}
+                    />
+                    
+                    {/* Radial glow accents */}
+                    <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px]" />
+                    <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-accent/15 rounded-full blur-[80px]" />
+                    <div className="absolute top-1/2 left-0 w-[300px] h-[300px] bg-primary/10 rounded-full blur-[60px]" />
+                </div>
+                
+                <div className="relative z-10">
                 <Navbar />
 
                 {/* Hero Section */}
@@ -309,6 +338,7 @@ const Gallery = () => {
                 </AnimatePresence>
 
                 <Footer />
+                </div>
             </div>
         </>
     );
