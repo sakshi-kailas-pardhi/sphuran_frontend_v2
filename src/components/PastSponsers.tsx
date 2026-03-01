@@ -7,31 +7,36 @@ const sponsorLogos = getAllSponsors();
 
 const PastSponsers = memo(() => {
   return (
-    <section id="sponsors" className="relative py-24 md:py-32 overflow-hidden">
+    <section id="sponsors" className="relative py-24 md:py-32 overflow-hidden" style={{ backgroundColor: 'transparent' }}>
       <div className="container mx-auto px-4 md:px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <span className="font-body text-xs tracking-[0.4em] uppercase text-muted-foreground">
-            Our Partners
+          <span className="font-body text-xs tracking-[0.4em] uppercase text-white/40">
+            Trusted By Industry Leaders
           </span>
-          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-black text-foreground mt-4 leading-none">
-            PAST SPONSORS
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-4 leading-none">
+            Past <span className="text-primary">Sponsors</span>
           </h2>
-          <div className="w-32 h-1 bg-primary mx-auto mt-8" />
+          <p className="font-body text-white/50 mt-4 max-w-xl mx-auto">
+            Join prestigious brands that have partnered with us in previous editions
+          </p>
         </div>
 
         {/* Logo Loop */}
-        <div style={{ height: '200px', position: 'relative', overflow: 'hidden' }}>
+        <div 
+          className="relative overflow-hidden"
+          style={{ height: '120px' }}
+        >
           <LogoLoop
             logos={sponsorLogos}
-            speed={100}
+            speed={80}
             direction="left"
             logoHeight={60}
-            gap={60}
+            gap={80}
             hoverSpeed={0}
             scaleOnHover
             fadeOut
-            fadeOutColor="#ffffff"
+            fadeOutColor="#0a0a0f"
             ariaLabel="Past sponsors and partners"
           />
         </div>
