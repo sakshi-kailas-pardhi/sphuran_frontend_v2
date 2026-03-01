@@ -66,58 +66,61 @@ const ProfileModal = ({ member, onClose }: { member: SelectedMember | null; onCl
   );
 };
 
-const TeamSection = memo(({ title, members, expandable = false, onMemberClick, departmentName }: { title: string; members: TeamMember[]; expandable?: boolean; onMemberClick: (member: SelectedMember) => void; departmentName?: string }) => {
+const TeamSection = memo(({ title, members, expandable = false, onMemberClick, departmentName, showRoleBadge = false, roleBadge }: { title: string; members: TeamMember[]; expandable?: boolean; onMemberClick: (member: SelectedMember) => void; departmentName?: string; showRoleBadge?: boolean; roleBadge?: string }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const displayMembers = expandable && !isExpanded ? members.slice(0, 3) : members;
 
   return (
-    <div className="mb-6">
-      <h3 className="font-display text-sm tracking-wider uppercase text-primary mb-3">{title}</h3>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
-        {displayMembers.map((member, index) => (
-          <div 
-            key={index}
-            onClick={() => member.image && onMemberClick({ 
-              ...member, 
-              displayRole: departmentName 
-                ? (title ? `${title} - ${departmentName}` : departmentName)
-                : (title || member.role)
-            })}
-            className={`bg-card border border-border rounded-lg hover:border-primary/50 transition-colors flex flex-col overflow-hidden ${member.image ? 'cursor-pointer' : ''}`}
-          >
-            <div className="aspect-square w-full overflow-hidden bg-muted">
-              {member.image ? (
-                <img 
-                  src={member.image} 
-                  alt={member.name}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <User className="w-1/3 h-1/3 text-muted-foreground/50" />
-                </div>
-              )}
-            </div>
-            <div className="p-3 text-center">
-              <p className="font-display text-xs sm:text-sm font-semibold text-foreground leading-tight">
-                {member.name}
-              </p>
-              {member.year && (
-                <p className="text-[10px] sm:text-xs text-accent mt-1">
-                  {member.year}<sup>{member.year === 1 ? 'st' : member.year === 2 ? 'nd' : member.year === 3 ? 'rd' : 'th'}</sup> year
-                </p>
-              )}
-              {member.role && (
-                <p className="font-body text-[10px] sm:text-xs text-muted-foreground mt-1 line-clamp-2">{member.role}</p>
-              )}
-            </div>
+    <>
+      {title && <h3 className="font-display text-sm tracking-wider uppercase text-primary mb-3 col-span-full">{title}</h3>}
+      {displayMembers.map((member, index) => (
+        <div 
+          key={index}
+          onClick={() => onMemberClick({ 
+            ...member, 
+            displayRole: departmentName 
+              ? (roleBadge ? `${roleBadge} - ${departmentName}` : departmentName)
+              : (roleBadge || member.role)
+          })}
+          className="bg-card border border-border rounded-lg hover:border-primary/50 transition-colors flex flex-col overflow-hidden cursor-pointer"
+        >
+          <div className="aspect-square w-full overflow-hidden bg-muted relative">
+            {member.image ? (
+              <img 
+                src={member.image} 
+                alt={member.name}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center">
+                <User className="w-1/3 h-1/3 text-muted-foreground/50" />
+              </div>
+            )}
+            {showRoleBadge && roleBadge && (
+              <span className="absolute top-2 left-2 px-2 py-0.5 bg-primary/90 text-primary-foreground text-[9px] sm:text-[10px] font-medium rounded-full">
+                {roleBadge}
+              </span>
+            )}
           </div>
-        ))}
-      </div>
+          <div className="p-3 text-center">
+            <p className="font-display text-xs sm:text-sm font-semibold text-foreground leading-tight">
+              {member.name}
+            </p>
+            {member.year && (
+              <p className="text-[10px] sm:text-xs text-accent mt-1">
+                {member.year}<sup>{member.year === 1 ? 'st' : member.year === 2 ? 'nd' : member.year === 3 ? 'rd' : 'th'}</sup> year
+              </p>
+            )}
+            {member.role && (
+              <p className="font-body text-[10px] sm:text-xs text-muted-foreground mt-1 line-clamp-2">{member.role}</p>
+            )}
+          </div>
+        </div>
+      ))}
       {expandable && members.length > 3 && (
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="mt-3 w-full p-3 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors font-body text-xs text-muted-foreground hover:text-primary flex items-center justify-center gap-2"
+          className="col-span-full mt-3 w-full p-3 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors font-body text-xs text-muted-foreground hover:text-primary flex items-center justify-center gap-2"
         >
           {isExpanded ? (
             <>
@@ -132,7 +135,7 @@ const TeamSection = memo(({ title, members, expandable = false, onMemberClick, d
           )}
         </button>
       )}
-    </div>
+    </>
   );
 });
 
@@ -152,10 +155,10 @@ const DepartmentSection = memo(({
       <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 border-b border-border pb-3">
         {title}
       </h2>
-      <div className="space-y-6">
-        <TeamSection title="Head" members={department.head} onMemberClick={onMemberClick} departmentName={title} />
-        <TeamSection title="Associate Head" members={department.associateHead} expandable={department.associateHead.length > 3} onMemberClick={onMemberClick} departmentName={title} />
-        <TeamSection title="Associates" members={department.associates} expandable={department.associates.length > 3} onMemberClick={onMemberClick} departmentName={title} />
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+        <TeamSection title="" members={department.head} onMemberClick={onMemberClick} departmentName={title} showRoleBadge roleBadge="Head" />
+        <TeamSection title="" members={department.associateHead} onMemberClick={onMemberClick} departmentName={title} showRoleBadge roleBadge="Assoc. Head" />
+        <TeamSection title="" members={department.associates} onMemberClick={onMemberClick} departmentName={title} showRoleBadge roleBadge="Associate" />
       </div>
     </div>
   );
@@ -174,9 +177,7 @@ const Team = () => {
   // Animation refs
   const heroRef = useInView({ threshold: 0.2, triggerOnce: true });
   const facultyRef = useInView({ threshold: 0.2, triggerOnce: true });
-  const secretaryRef = useInView({ threshold: 0.2, triggerOnce: true });
-  const coordinatorsRef = useInView({ threshold: 0.2, triggerOnce: true });
-  const jointCoordinatorsRef = useInView({ threshold: 0.2, triggerOnce: true });
+  const leadershipRef = useInView({ threshold: 0.2, triggerOnce: true });
   const departmentsRef = useInView({ threshold: 0.1, rootMargin: '200px', triggerOnce: true });
   
   return (
@@ -265,49 +266,23 @@ const Team = () => {
           </div>
         </div>
 
-        {/* Secretary */}
+        {/* Leadership */}
         <div 
-          ref={secretaryRef.ref}
+          ref={leadershipRef.ref}
           className={`mb-12 transition-all duration-700 ${
-            secretaryRef.isInView 
+            leadershipRef.isInView 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-10'
           }`}
         >
           <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 border-b border-border pb-3">
-            Secretary
+            Leadership
           </h2>
-          <TeamSection title="" members={teamData.secretary} onMemberClick={handleMemberClick} departmentName="Secretary" />
-        </div>
-
-        {/* Main Coordinators */}
-        <div 
-          ref={coordinatorsRef.ref}
-          className={`mb-12 transition-all duration-700 ${
-            coordinatorsRef.isInView 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 border-b border-border pb-3">
-            Main Coordinators
-          </h2>
-          <TeamSection title="" members={teamData.mainCoordinators} onMemberClick={handleMemberClick} departmentName="Main Coordinator" />
-        </div>
-
-        {/* Joint Coordinators */}
-        <div 
-          ref={jointCoordinatorsRef.ref}
-          className={`mb-12 transition-all duration-700 ${
-            jointCoordinatorsRef.isInView 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 border-b border-border pb-3">
-            Joint Coordinators
-          </h2>
-          <TeamSection title="" members={teamData.jointCoordinators} onMemberClick={handleMemberClick} departmentName="Joint Coordinator" />
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+            <TeamSection title="" members={teamData.secretary} onMemberClick={handleMemberClick} departmentName="Secretary" showRoleBadge roleBadge="Secretary" />
+            <TeamSection title="" members={teamData.mainCoordinators} onMemberClick={handleMemberClick} departmentName="Main Coordinator" showRoleBadge roleBadge="Main Coord." />
+            <TeamSection title="" members={teamData.jointCoordinators} onMemberClick={handleMemberClick} departmentName="Joint Coordinator" showRoleBadge roleBadge="Jt. Coord." />
+          </div>
         </div>
 
         {/* Departments */}
@@ -332,7 +307,9 @@ const Team = () => {
           <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 border-b border-border pb-3">
             Volunteers
           </h2>
-          <TeamSection title="" members={teamData.volunteers} onMemberClick={handleMemberClick} departmentName="Volunteer" />
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+            <TeamSection title="" members={teamData.volunteers} onMemberClick={handleMemberClick} departmentName="Volunteer" showRoleBadge roleBadge="Volunteer" />
+          </div>
         </div>
         </div>
       </div>
