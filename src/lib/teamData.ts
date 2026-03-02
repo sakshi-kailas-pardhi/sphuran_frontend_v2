@@ -45,7 +45,7 @@ export const teamData: TeamData = {
     }
   ],
   secretary: [
-    { name: 'Ruman Paul', year: 4 }
+    { name: 'Ruman Paul', year: 4, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772428153/2022EEB002_RUMAN_PAUL_zvilay.jpg' }
   ],
   mainCoordinators: [
     { name: 'Devendra Prasad', year: 4, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382526/IMG-20241102-WA0004_3_-_2022EEB059_2022EEB059_DEVENDRA_lketvf.jpg' },
@@ -139,7 +139,7 @@ export const teamData: TeamData = {
   },
   website: {
     head: [{ name: 'Sakshi Kailas Pardhi', year: 4 }],
-    associateHead: [{ name: 'Aminul Islam', year: 3 }],
+    associateHead: [{ name: 'Aminul Islam', year: 3, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772428315/2023EEB005_AMINUL_ISLAM_suhoze.jpg' }],
     associates: [
       { name: 'Shivam Kumar', year: 2 },
       { name: 'Vijay Nitin Deshmukh', year: 2, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382450/IMG_20250930_155205_545_-_2024EEB085_VIJAY_NITIN_DESHMUKH_tpho0n.webp' }

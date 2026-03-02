@@ -19,22 +19,22 @@ const ProfileModal = ({ member, onClose }: { member: SelectedMember | null; onCl
   
   return (
     <div 
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-2 sm:p-4"
       onClick={onClose}
     >
       <div 
-        className="relative bg-card border border-border rounded-xl p-0 w-[90vw] max-w-3xl h-[280px] md:h-[350px] overflow-hidden animate-in zoom-in-95 duration-200 flex flex-col md:flex-row"
+        className="relative bg-card border border-border rounded-xl p-0 w-full max-w-3xl max-h-[90vh] overflow-hidden animate-in zoom-in-95 duration-200 flex flex-col md:flex-row mx-2"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 p-1.5 rounded-full bg-black/50 hover:bg-black/70 transition-colors z-10"
+          className="absolute top-2 right-2 sm:top-3 sm:right-3 p-1 sm:p-1.5 rounded-full bg-black/50 hover:bg-black/70 transition-colors z-10"
         >
-          <X className="w-5 h-5 text-white" />
+          <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
         </button>
         
         {member.image && (
-          <div className="w-full md:w-1/2 h-40 md:h-full flex-shrink-0">
+          <div className="w-full md:w-1/2 h-64 sm:h-72 md:h-[350px] flex-shrink-0">
             <img 
               src={member.image} 
               alt={member.name}
@@ -43,21 +43,21 @@ const ProfileModal = ({ member, onClose }: { member: SelectedMember | null; onCl
           </div>
         )}
         
-        <div className="flex-1 p-6 md:p-8 flex flex-col justify-center">
-          <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">
+        <div className="flex-1 p-4 sm:p-6 md:p-8 flex flex-col justify-center">
+          <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-1 sm:mb-2">
             {member.name}
           </h3>
           
           {member.year && (
-            <p className="text-base text-accent mb-3">
+            <p className="text-sm sm:text-base text-accent mb-2 sm:mb-3">
               {member.year}<sup>{member.year === 1 ? 'st' : member.year === 2 ? 'nd' : member.year === 3 ? 'rd' : 'th'}</sup> Year
             </p>
           )}
           
           {(member.displayRole || member.role) && (
-            <div className="mt-2">
-              <p className="font-display text-xs uppercase tracking-wider text-muted-foreground mb-1">Role</p>
-              <p className="font-body text-base text-foreground">{member.displayRole || member.role}</p>
+            <div className="mt-1 sm:mt-2">
+              <p className="font-display text-[10px] sm:text-xs uppercase tracking-wider text-muted-foreground mb-0.5 sm:mb-1">Role</p>
+              <p className="font-body text-sm sm:text-base text-foreground">{member.displayRole || member.role}</p>
             </div>
           )}
         </div>
@@ -97,22 +97,22 @@ const TeamSection = memo(({ title, members, expandable = false, onMemberClick, d
               </div>
             )}
             {showRoleBadge && roleBadge && (
-              <span className="absolute top-2 left-2 px-2 py-0.5 bg-primary/90 text-primary-foreground text-[9px] sm:text-[10px] font-medium rounded-full">
+              <span className="absolute top-1 left-1 sm:top-2 sm:left-2 px-1.5 sm:px-2 py-0.5 bg-primary/90 text-primary-foreground text-[8px] sm:text-[10px] font-medium rounded-full">
                 {roleBadge}
               </span>
             )}
           </div>
-          <div className="p-3 text-center">
-            <p className="font-display text-xs sm:text-sm font-semibold text-foreground leading-tight">
+          <div className="p-2 sm:p-3 text-center">
+            <p className="font-display text-[11px] sm:text-sm font-semibold text-foreground leading-tight line-clamp-2">
               {member.name}
             </p>
             {member.year && (
-              <p className="text-[10px] sm:text-xs text-accent mt-1">
+              <p className="text-[9px] sm:text-xs text-accent mt-0.5 sm:mt-1">
                 {member.year}<sup>{member.year === 1 ? 'st' : member.year === 2 ? 'nd' : member.year === 3 ? 'rd' : 'th'}</sup> year
               </p>
             )}
             {member.role && (
-              <p className="font-body text-[10px] sm:text-xs text-muted-foreground mt-1 line-clamp-2">{member.role}</p>
+              <p className="font-body text-[9px] sm:text-xs text-muted-foreground mt-0.5 sm:mt-1 line-clamp-2">{member.role}</p>
             )}
           </div>
         </div>
@@ -151,11 +151,11 @@ const DepartmentSection = memo(({
   onMemberClick: (member: SelectedMember) => void;
 }) => {
   return (
-    <div className="mb-8">
-      <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 border-b border-border pb-3">
+    <div className="mb-6 sm:mb-8">
+      <h2 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-4 sm:mb-6 border-b border-border pb-2 sm:pb-3">
         {title}
       </h2>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
         <TeamSection title="" members={department.head} onMemberClick={onMemberClick} departmentName={title} showRoleBadge roleBadge="Head" />
         <TeamSection title="" members={department.associateHead} onMemberClick={onMemberClick} departmentName={title} showRoleBadge roleBadge="Assoc. Head" />
         <TeamSection title="" members={department.associates} onMemberClick={onMemberClick} departmentName={title} showRoleBadge roleBadge="Associate" />
@@ -195,13 +195,13 @@ const Team = () => {
       
       {/* Header */}
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border relative">
-        <div className="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+        <div className="container mx-auto px-3 sm:px-4 md:px-6 py-3 sm:py-4 flex items-center justify-between gap-2">
           <button 
             onClick={() => window.history.length > 1 ? navigate(-1) : navigate('/')}
-            className="inline-flex items-center gap-2 font-display text-sm tracking-wider uppercase text-muted-foreground hover:text-primary transition-colors"
+            className="inline-flex items-center gap-1 sm:gap-2 font-display text-xs sm:text-sm tracking-wider uppercase text-muted-foreground hover:text-primary transition-colors"
           >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Home
+            <ArrowLeft className="w-3 h-3 sm:w-4 sm:h-4" />
+            <span className="hidden xs:inline">Back to</span> Home
           </button>
           
           <Breadcrumbs 
@@ -214,53 +214,53 @@ const Team = () => {
       </header>
 
       {/* Content */}
-      <div className="container mx-auto px-4 md:px-6 py-12 md:py-16 relative z-10">
+      <div className="container mx-auto px-3 sm:px-4 md:px-6 py-8 sm:py-12 md:py-16 relative z-10">
         {/* Page Header */}
         <div 
           ref={heroRef.ref}
-          className={`mb-16 transition-all duration-700 ${
+          className={`mb-8 sm:mb-16 transition-all duration-700 ${
             heroRef.isInView 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-10'
           }`}
         >
-          <span className="font-body text-xs tracking-[0.4em] uppercase text-muted-foreground">
+          <span className="font-body text-[10px] sm:text-xs tracking-[0.3em] sm:tracking-[0.4em] uppercase text-muted-foreground">
             Meet Our Team
           </span>
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-black text-foreground mt-4 leading-none">
+          <h1 className="font-display text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-foreground mt-2 sm:mt-4 leading-none">
             TEAM SPHURAN 4.0
           </h1>
-          <div className="w-32 h-1 bg-primary mt-8" />
+          <div className="w-20 sm:w-32 h-1 bg-primary mt-4 sm:mt-8" />
         </div>
 
         {/* Faculty */}
         <div 
           ref={facultyRef.ref}
-          className={`mb-12 ${
+          className={`mb-8 sm:mb-12 ${
             facultyRef.isInView 
               ? 'animate-load-slide-up' 
               : 'opacity-0 translate-y-10'
           }`}
         >
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 border-b border-border pb-3">
+          <h2 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-4 sm:mb-6 border-b border-border pb-2 sm:pb-3">
             Faculty Advisors
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             {teamData.faculty.map((member, index) => (
               <div 
                 key={index}
                 onClick={() => member.image && handleMemberClick(member)}
-                className={`p-6 bg-card border-2 border-primary/30 rounded-lg hover:border-primary transition-colors flex flex-col items-center text-center ${member.image ? 'cursor-pointer' : ''}`}
+                className={`p-4 sm:p-6 bg-card border-2 border-primary/30 rounded-lg hover:border-primary transition-colors flex flex-col items-center text-center ${member.image ? 'cursor-pointer' : ''}`}
               >
                 {member.image && (
                   <img 
                     src={member.image} 
                     alt={member.name}
-                    className="w-28 h-28 rounded-full object-cover border-2 border-primary/50 mb-4"
+                    className="w-20 h-20 sm:w-28 sm:h-28 rounded-full object-cover border-2 border-primary/50 mb-3 sm:mb-4"
                   />
                 )}
-                <p className="font-display text-base font-bold text-foreground mb-2">{member.name}</p>
-                <p className="font-body text-xs text-muted-foreground">{member.role}</p>
+                <p className="font-display text-sm sm:text-base font-bold text-foreground mb-1 sm:mb-2">{member.name}</p>
+                <p className="font-body text-[10px] sm:text-xs text-muted-foreground">{member.role}</p>
               </div>
             ))}
           </div>
@@ -269,16 +269,16 @@ const Team = () => {
         {/* Leadership */}
         <div 
           ref={leadershipRef.ref}
-          className={`mb-12 transition-all duration-700 ${
+          className={`mb-8 sm:mb-12 transition-all duration-700 ${
             leadershipRef.isInView 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-10'
           }`}
         >
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 border-b border-border pb-3">
+          <h2 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-4 sm:mb-6 border-b border-border pb-2 sm:pb-3">
             Leadership
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
             <TeamSection title="" members={teamData.secretary} onMemberClick={handleMemberClick} departmentName="Secretary" showRoleBadge roleBadge="Secretary" />
             <TeamSection title="" members={teamData.mainCoordinators} onMemberClick={handleMemberClick} departmentName="Main Coordinator" showRoleBadge roleBadge="Main Coord." />
             <TeamSection title="" members={teamData.jointCoordinators} onMemberClick={handleMemberClick} departmentName="Joint Coordinator" showRoleBadge roleBadge="Jt. Coord." />
@@ -303,11 +303,11 @@ const Team = () => {
         <DepartmentSection title="Travel & Logistics" department={teamData.travelLogistics} onMemberClick={handleMemberClick} />
 
         {/* Volunteers */}
-        <div className="mb-8">
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 border-b border-border pb-3">
+        <div className="mb-6 sm:mb-8">
+          <h2 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-4 sm:mb-6 border-b border-border pb-2 sm:pb-3">
             Volunteers
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
             <TeamSection title="" members={teamData.volunteers} onMemberClick={handleMemberClick} departmentName="Volunteer" showRoleBadge roleBadge="Volunteer" />
           </div>
         </div>
