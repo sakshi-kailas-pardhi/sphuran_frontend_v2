@@ -98,7 +98,7 @@ export const teamData: TeamData = {
       { name: 'Bikramjeet', year: 2, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382513/IMG_20260301_073929_-_2024EEB040_BIKRAMJEET_DASGUPTA_gi85xs.jpg' },
       { name: 'Joyon rudra pal', year: 2, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382483/IMG_20251204_205721_-_2024EEB029_JOYON_RUDRA_PAL_mqtxxu.jpg' },
       { name: 'Alok Kumar', year: 2, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382523/IMG_20260228_203940_-_2024EEB067_ALOK_KUMAR_u33gji.jpg' },
-      { name: 'Ayisa Nithara S G', year: 2 }
+      { name: 'Ayisa Nithara S G', year: 2, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772526842/IMG_9620_-_2024EEB016_AYISA_NITHARA_S_G_kjvozo.jpg' }
     ]
   },
   publicity: {
@@ -120,12 +120,12 @@ export const teamData: TeamData = {
   eventManagement: {
     head: [
       { name: 'Anay Verma', year: 4, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382378/IMG-20251213-WA0017_-_2022EEB083_2022EEB083_ANAY_kexe61.jpg' },
-      { name: 'Shekhar Pal', year: 4 }
+      { name: 'Shekhar Pal', year: 4, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772526925/IMG_20260118_220428_-_2022EEB084_2022EEB084_SHEKHAR_lfle5a.jpg' }
     ],
     associateHead: [
       { name: 'Kilari Dheeraj Kumar', year: 3 },
       { name: 'Bithika Mondal', year: 3, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382561/IMG-20260301-WA0058_-_2023EEB013_BITHIKA_MANDAL_axmpou.jpg' },
-      { name: 'Mahesh Purohit', year: 3 },
+      { name: 'Mahesh Purohit', year: 3, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772526927/IMG_20260302_010042_-_2023EEB092_MAHESH_PUROHIT_jueu1r.jpg' },
       { name: 'Preeti Bhargava', year: 3, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382426/1710267279175_-_2023EEB051_PREETI_BHARGAVA_l1klgb.jpg' }
     ],
     associates: [
@@ -166,7 +166,7 @@ export const teamData: TeamData = {
   volunteers: [
     { name: 'Saptarshi Mallick', year: 4 },
     { name: 'PENDELA VINAY RAJ', year: 3, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382410/Screenshot_20250823_222435_Photos_2_-_2023EEB050_PENDELA_VINAY_RAJ_ymxzzv.jpg' },
-    { name: 'Ankul Kumar', year: 3 },
+    { name: 'Ankul Kumar', year: 3, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772526929/Passport_Photo_-_2023EEB012_ANKUL_KUMAR_bz1jma.png' },
     { name: 'Harshit Awasthi', year: 3 },
     { name: 'Keshav Kumar', year: 3 }
   ]
