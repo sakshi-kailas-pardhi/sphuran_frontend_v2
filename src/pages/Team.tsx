@@ -1,4 +1,4 @@
-import { useState, memo } from 'react';
+import { useState, memo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, ChevronDown, ChevronUp, X, User } from 'lucide-react';
 import Footer from '@/components/Footer';
@@ -13,53 +13,112 @@ interface SelectedMember extends TeamMember {
   displayRole?: string;
 }
 
-// Profile Modal Component
+// Profile Modal Component with dynamic sizing based on image dimensions
 const ProfileModal = ({ member, onClose }: { member: SelectedMember | null; onClose: () => void }) => {
+  const [imageDimensions, setImageDimensions] = useState<{ width: number; height: number } | null>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  useEffect(() => {
+    if (member?.image) {
+      setImageLoaded(false);
+      setImageDimensions(null);
+      const img = new Image();
+      img.onload = () => {
+        setImageDimensions({ width: img.naturalWidth, height: img.naturalHeight });
+        setImageLoaded(true);
+      };
+      img.src = member.image;
+    }
+  }, [member?.image]);
+
+  // Close on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
   if (!member) return null;
+
+  // Calculate aspect ratio for dynamic sizing
+  const aspectRatio = imageDimensions ? imageDimensions.width / imageDimensions.height : 1;
+  
+  // Calculate max dimensions based on viewport
+  const maxHeight = typeof window !== 'undefined' ? window.innerHeight * 0.85 : 700;
+  const maxWidth = typeof window !== 'undefined' ? Math.min(window.innerWidth * 0.9, 600) : 600;
+  
+  // Calculate image display size maintaining aspect ratio
+  let imgWidth = maxWidth;
+  let imgHeight = imgWidth / aspectRatio;
+  
+  if (imgHeight > maxHeight - 120) { // Reserve space for info section
+    imgHeight = maxHeight - 120;
+    imgWidth = imgHeight * aspectRatio;
+  }
   
   return (
     <div 
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-2 sm:p-4"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 backdrop-blur-sm p-2 sm:p-4"
       onClick={onClose}
     >
       <div 
-        className="relative bg-card border border-border rounded-xl p-0 w-full max-w-3xl max-h-[90vh] overflow-hidden animate-in zoom-in-95 duration-200 flex flex-col md:flex-row mx-2"
+        className="relative bg-card border border-border rounded-xl overflow-hidden animate-in zoom-in-95 duration-200 flex flex-col mx-2"
+        style={{ 
+          maxWidth: imageLoaded ? `${Math.max(imgWidth, 280)}px` : '320px',
+          maxHeight: `${maxHeight}px`
+        }}
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 sm:top-3 sm:right-3 p-1 sm:p-1.5 rounded-full bg-black/50 hover:bg-black/70 transition-colors z-10"
+          className="absolute top-2 right-2 sm:top-3 sm:right-3 p-1.5 sm:p-2 rounded-full bg-black/60 hover:bg-black/80 transition-colors z-10"
         >
           <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
         </button>
         
         {member.image && (
-          <div className="w-full md:w-1/2 h-64 sm:h-72 md:h-[350px] flex-shrink-0">
+          <div 
+            className="w-full overflow-hidden bg-muted flex items-center justify-center"
+            style={{ 
+              minHeight: imageLoaded ? 'auto' : '200px',
+            }}
+          >
+            {!imageLoaded && (
+              <div className="w-full h-48 flex items-center justify-center animate-pulse">
+                <User className="w-12 h-12 text-muted-foreground/50" />
+              </div>
+            )}
             <img 
               src={member.image} 
               alt={member.name}
-              className="w-full h-full object-cover"
+              className={`w-full h-auto object-contain transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0 absolute'}`}
+              style={{
+                maxHeight: `${maxHeight - 120}px`
+              }}
             />
           </div>
         )}
         
-        <div className="flex-1 p-4 sm:p-6 md:p-8 flex flex-col justify-center">
-          <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-1 sm:mb-2">
+        <div className="p-4 sm:p-5 bg-card border-t border-border/50">
+          <h3 className="font-display text-lg sm:text-xl md:text-2xl font-bold text-foreground mb-1">
             {member.name}
           </h3>
           
-          {member.year && (
-            <p className="text-sm sm:text-base text-accent mb-2 sm:mb-3">
-              {member.year}<sup>{member.year === 1 ? 'st' : member.year === 2 ? 'nd' : member.year === 3 ? 'rd' : 'th'}</sup> Year
-            </p>
-          )}
-          
-          {(member.displayRole || member.role) && (
-            <div className="mt-1 sm:mt-2">
-              <p className="font-display text-[10px] sm:text-xs uppercase tracking-wider text-muted-foreground mb-0.5 sm:mb-1">Role</p>
-              <p className="font-body text-sm sm:text-base text-foreground">{member.displayRole || member.role}</p>
-            </div>
-          )}
+          <div className="flex items-center gap-3 flex-wrap">
+            {member.year && (
+              <p className="text-sm text-accent">
+                {member.year}<sup>{member.year === 1 ? 'st' : member.year === 2 ? 'nd' : member.year === 3 ? 'rd' : 'th'}</sup> Year
+              </p>
+            )}
+            
+            {(member.displayRole || member.role) && (
+              <p className="font-body text-sm text-muted-foreground">
+                {member.displayRole || member.role}
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </div>
