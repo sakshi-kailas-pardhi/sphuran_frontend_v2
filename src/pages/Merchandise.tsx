@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Award } from 'lucide-react';
 import Footer from '@/components/Footer';
@@ -8,6 +9,7 @@ import { IMAGES } from '@/lib/assets';
 
 const Merchandise = () => {
   const navigate = useNavigate();
+  const [selectedSize, setSelectedSize] = useState<string>('M');
 
   // Animation refs
   const mainRef = useInView({ threshold: 0.1, triggerOnce: true });
@@ -174,15 +176,16 @@ const Merchandise = () => {
               {/* Sizes Section */}
               <div className="mt-10 flex flex-col items-center gap-4">
                 <span className="font-display text-sm text-[#5c4a32] tracking-[0.2em] uppercase">
-                  SIZES AVAILABLE
+                  SELECT SIZE
                 </span>
                 <div className="flex items-center gap-3">
-                  {['M', 'L', 'XL', '2XL'].map((size, index) => (
+                  {['S', 'M', 'L', 'XL', '2XL'].map((size) => (
                     <button
                       key={size}
+                      onClick={() => setSelectedSize(size)}
                       className={`w-12 h-12 font-display text-sm font-bold border-2 transition-all duration-200 ${
-                        index === 0
-                          ? 'bg-[#2c1810] text-[#f5f0e8] border-[#2c1810]'
+                        selectedSize === size
+                          ? 'bg-[#2c1810] text-[#f5f0e8] border-[#2c1810] scale-110'
                           : 'bg-transparent text-[#5c4a32] border-[#c4b49a] hover:border-[#5c4a32] hover:bg-[#5c4a32]/10'
                       }`}
                     >
@@ -193,9 +196,14 @@ const Merchandise = () => {
               </div>
 
               {/* Buy It Now Button */}
-              <button className="mt-8 px-12 py-4 bg-[#1a1a1a] text-white font-display text-sm tracking-[0.2em] uppercase hover:bg-black transition-colors duration-200">
+              <a
+                href="https://forms.gle/your-google-form-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-8 px-12 py-4 bg-[#1a1a1a] text-white font-display text-sm tracking-[0.2em] uppercase hover:bg-black transition-colors duration-200 inline-block text-center"
+              >
                 BUY IT NOW
-              </button>
+              </a>
             </div>
 
             {/* Right Side - Product Info */}
