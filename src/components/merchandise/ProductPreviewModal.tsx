@@ -1,5 +1,6 @@
 import { X, Download, ChevronLeft, ChevronRight } from 'lucide-react';
 import { ShareMenu } from './ShareMenu';
+import { useIsMobile } from '@/hooks/use-mobile';
 import type { ProductImage } from '@/lib/merchandiseData';
 
 interface ProductPreviewModalProps {
@@ -41,6 +42,8 @@ export function ProductPreviewModal({
   onTouchMove,
   onTouchEnd,
 }: ProductPreviewModalProps) {
+  const isMobile = useIsMobile();
+
   if (!isOpen) return null;
 
   const currentImage = images[currentIndex];
@@ -90,13 +93,13 @@ export function ProductPreviewModal({
         className="flex items-center gap-6 mb-4"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Image with Lens Zoom */}
+        {/* Image with Lens Zoom (disabled on mobile) */}
         <div
           ref={imageRef}
-          className="relative rounded-lg shadow-2xl cursor-crosshair overflow-hidden"
-          onMouseEnter={onZoomStart}
-          onMouseLeave={onZoomEnd}
-          onMouseMove={onMouseMove}
+          className={`relative rounded-lg shadow-2xl overflow-hidden ${!isMobile ? 'cursor-crosshair' : ''}`}
+          onMouseEnter={!isMobile ? onZoomStart : undefined}
+          onMouseLeave={!isMobile ? onZoomEnd : undefined}
+          onMouseMove={!isMobile ? onMouseMove : undefined}
         >
           <img
             src={currentImage.src}
@@ -104,8 +107,8 @@ export function ProductPreviewModal({
             className="max-w-full max-h-[50vh] object-contain rounded-lg pointer-events-none"
           />
 
-          {/* Lens highlight area on hover */}
-          {isZooming && (
+          {/* Lens highlight area on hover (desktop only) */}
+          {isZooming && !isMobile && (
             <div
               className="absolute w-20 h-20 border-2 border-white/80 rounded pointer-events-none"
               style={{
@@ -118,8 +121,8 @@ export function ProductPreviewModal({
           )}
         </div>
 
-        {/* Magnified View Panel */}
-        {isZooming && (
+        {/* Magnified View Panel (desktop only) */}
+        {isZooming && !isMobile && (
           <div className="hidden md:block w-64 h-64 lg:w-72 lg:h-72 rounded-xl overflow-hidden border-2 border-white/30 shadow-2xl flex-shrink-0">
             <div
               className="w-full h-full"
@@ -142,7 +145,7 @@ export function ProductPreviewModal({
         <span className="text-white/50 text-sm ml-2">
           ({currentIndex + 1} / {images.length})
         </span>
-        {isZooming && (
+        {isZooming && !isMobile && (
           <p className="text-white/40 text-xs mt-1">Hover to zoom</p>
         )}
       </div>
