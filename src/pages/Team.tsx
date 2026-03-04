@@ -1,5 +1,5 @@
 import { useState, memo, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, ChevronDown, ChevronUp, X, User } from 'lucide-react';
 import Footer from '@/components/Footer';
 import { BackgroundBeams } from '@/components/ui/background-beams';
@@ -7,6 +7,43 @@ import { SEO } from '@/components/SEO';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { useInView } from '@/hooks/use-in-view';
 import { teamData, type TeamMember, type Department } from '@/lib/teamData';
+
+// Helper to create URL-friendly slug from name
+const createSlug = (name: string): string => {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+};
+
+// Helper to find a member by slug across all team data
+const findMemberBySlug = (slug: string): SelectedMember | null => {
+  const searchInArray = (members: TeamMember[], displayRole?: string): SelectedMember | null => {
+    for (const member of members) {
+      if (createSlug(member.name) === slug) {
+        return { ...member, displayRole };
+      }
+    }
+    return null;
+  };
+
+  const searchInDepartment = (dept: Department, deptName: string): SelectedMember | null => {
+    return searchInArray(dept.head, `Head - ${deptName}`) ||
+           searchInArray(dept.associateHead, `Assoc. Head - ${deptName}`) ||
+           searchInArray(dept.associates, `Associate - ${deptName}`);
+  };
+
+  // Search in all sections
+  return searchInArray(teamData.faculty) ||
+         searchInArray(teamData.secretary, 'Secretary') ||
+         searchInArray(teamData.mainCoordinators, 'Main Coordinator') ||
+         searchInArray(teamData.jointCoordinators, 'Joint Coordinator') ||
+         searchInDepartment(teamData.financeAudit, 'Finance & Audit') ||
+         searchInDepartment(teamData.website, 'Website') ||
+         searchInDepartment(teamData.design, 'Design') ||
+         searchInDepartment(teamData.sponsorship, 'Sponsorship') ||
+         searchInDepartment(teamData.publicity, 'Publicity') ||
+         searchInDepartment(teamData.eventManagement, 'Event Management') ||
+         searchInDepartment(teamData.travelLogistics, 'Travel & Logistics') ||
+         searchInArray(teamData.volunteers, 'Volunteer');
+};
 
 // Extended type for modal display
 interface SelectedMember extends TeamMember {
@@ -227,10 +264,37 @@ DepartmentSection.displayName = 'DepartmentSection';
 
 const Team = () => {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [selectedMember, setSelectedMember] = useState<SelectedMember | null>(null);
+
+  // Open member from URL query param on mount
+  useEffect(() => {
+    const memberParam = searchParams.get('member');
+    if (memberParam) {
+      const member = findMemberBySlug(memberParam);
+      if (member) {
+        setSelectedMember(member);
+      }
+    }
+  }, []); // Only run on mount
+
+  // Update URL when member changes
+  const updateUrlParam = (member: SelectedMember | null) => {
+    if (member) {
+      setSearchParams({ member: createSlug(member.name) }, { replace: true });
+    } else {
+      setSearchParams({}, { replace: true });
+    }
+  };
   
   const handleMemberClick = (member: SelectedMember) => {
     setSelectedMember(member);
+    updateUrlParam(member);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedMember(null);
+    updateUrlParam(null);
   };
   
   // Animation refs
@@ -375,7 +439,7 @@ const Team = () => {
 
       {/* Profile Modal */}
       {selectedMember && (
-        <ProfileModal member={selectedMember} onClose={() => setSelectedMember(null)} />
+        <ProfileModal member={selectedMember} onClose={handleCloseModal} />
       )}
 
       {/* Footer */}
