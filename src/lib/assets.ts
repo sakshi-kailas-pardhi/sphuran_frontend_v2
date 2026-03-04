@@ -21,8 +21,8 @@ export const IMAGES = {
 
   // Merchandise Images
   merchandise: {
-    tshirtFront: `${CLOUDINARY_BASE}/v1772303518/tshirt_front_b1ecjb.jpg`,
-    tshirtBack: `${CLOUDINARY_BASE}/v1772303699/thsirt_back_zfdijj.jpg`,
+    tshirtFront: `${CLOUDINARY_BASE}/v1772645290/sphuran_tshirt_front_1440-removebg-preview_sa1xyg.png`,
+    tshirtBack: `${CLOUDINARY_BASE}/v1772645290/sphuran_tshirt_back_1440-removebg-preview_alk4sq.png`,
   },
 
   // Sponsor Logos
