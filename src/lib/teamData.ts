@@ -138,7 +138,7 @@ export const teamData: TeamData = {
     ]
   },
   website: {
-    head: [{ name: 'Sakshi Kailas Pardhi', year: 4 }],
+    head: [{ name: 'Sakshi Kailas Pardhi', year: 4, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772610199/IMG20260207123249_-_2022EEB085_2022EEB085_SAKSHI_chsccv.jpg' }],
     associateHead: [{ name: 'Aminul Islam', year: 3, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772428315/2023EEB005_AMINUL_ISLAM_suhoze.jpg' }],
     associates: [
       { name: 'Shivam Kumar', year: 2 },
