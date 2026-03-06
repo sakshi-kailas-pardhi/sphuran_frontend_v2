@@ -4,8 +4,12 @@ import { Menu, Home, Calendar, Users, Trophy, Image, Mail, Shirt } from 'lucide-
 import { FaInstagram, FaFacebook, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import ChipsTab from './ui/tabs/ChipsTab';
 import { StaggeredMenu } from './ui/tabs/StaggeredMenu';
+import { Countdown } from './ui/animatedComponents/countdown';
 import { SocialLinks } from '@/lib/utils';
 import { IMAGES } from '@/lib/assets';
+
+// Event start date: March 13, 2026 at 00:00:00 IST
+const EVENT_DATE = new Date('2026-03-13T00:00:00+05:30');
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -182,6 +186,16 @@ const Navbar = memo(() => {
       <div className={`lg:hidden fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled ? 'bg-black/95 backdrop-blur-md border-b border-border' : 'bg-transparent'
       } h-20`} />
+
+      {/* Mobile Countdown - Centered in mobile header */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-[45] h-20 flex items-center justify-center pointer-events-none">
+        <div className="flex flex-col items-center">
+          <span className="font-body text-[10px] tracking-widest uppercase text-white/70 mb-1">
+            The wait ends in...
+          </span>
+          <Countdown targetDate={EVENT_DATE} variant="compact" />
+        </div>
+      </div>
       
       {/* Mobile StaggeredMenu - Only visible on mobile */}
       <div className="lg:hidden fixed inset-0 z-50 pointer-events-none">
@@ -242,6 +256,14 @@ const Navbar = memo(() => {
                 onSelect={(tab) => scrollToSection(tab.href ?? '')}
               />
             </div> */}
+
+            {/* Countdown Timer - Center */}
+            <div className="flex flex-col items-center">
+              <span className="font-body text-[30px] tracking-widest uppercase text-muted-foreground mb-1">
+                The wait ends in...
+              </span>
+              <Countdown targetDate={EVENT_DATE} variant="compact" />
+            </div>
 
             {/* CTA Button - Hidden on mobile */}
             <div className="hidden lg:flex items-center gap-4">
