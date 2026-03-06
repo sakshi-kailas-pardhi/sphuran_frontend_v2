@@ -77,7 +77,7 @@ export const teamData: TeamData = {
     associates: [
       { name: 'Jannat Parveen', year: 2, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382578/IMG_20260301_112740_-_2024EEB019_JANNAT_PARVIN_blpnbb.jpg' },
       { name: 'Daksha Raj', year: 2, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382438/IMG_6297_-_2024EEB014_DAKSHA_RAJ_cqbich.jpg' },
-      { name: 'Tanusree Gupta', year: 2, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382541/IMG-20260116-WA0031_-_2024EEB107_TANUSHREE_GUPTA_lcnqz2.jpg' },
+      { name: 'Tanushree Gupta', year: 2, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382541/IMG-20260116-WA0031_-_2024EEB107_TANUSHREE_GUPTA_lcnqz2.jpg' },
       { name: 'Shreya Goswami', year: 2, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382357/IMG-20241129-WA0225_-_2024EEB034_SHREYA_GOSWAMI_o1r7jq.jpg' }
     ]
   },
