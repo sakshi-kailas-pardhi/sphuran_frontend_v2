@@ -53,10 +53,10 @@ const HeroSection = memo(() => {
               4.0
             </span>
           </div>
-          {/* Coming Soon */}
+          {/* Event Date */}
           <div className='absolute -bottom-8 sm:-bottom-20 md:-bottom-32 lg:-bottom-40 left-4 sm:left-8 md:left-12 text-xs sm:text-base md:text-xl lg:text-2xl text-white font-display text-glow font-bold tracking-wide px-2 sm:px-4 py-1 sm:py-2 rounded-lg animate-load-slide-left' style={{ animationDelay: '0.8s', opacity: 0 }}>
             <TextType
-              text={["Coming Soon!", "Prepare to Outsmart", "Stay Wired!"]}
+              text={["13th - 15th March", "Prepare to Outsmart", "Stay Wired!"]}
               typingSpeed={75}
               pauseDuration={1500}
               showCursor
