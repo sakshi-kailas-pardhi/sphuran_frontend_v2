@@ -39,7 +39,7 @@ export const events: Event[] = [
         ],
         eligibility: 'Open to all engineering students',
         contact: 'sphuran.ees@gmail.com',
-        image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1770563231/quiz2_jncgem.svg',
+        image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772354566/DSC_0712_sxgche.jpg',
     },
     {
         title: 'Illumination',
@@ -59,7 +59,7 @@ export const events: Event[] = [
         ],
         eligibility: 'Open to all ECE, EE students',
         contact: 'sphuran.ees@gmail.com',
-        image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1770563231/circuit_ttosyd.svg',
+        image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772354442/DSC_0552_gtblih.jpg',
     },
     {
         title: 'Cyberblame',
@@ -99,7 +99,7 @@ export const events: Event[] = [
         ],
         eligibility: 'Open to all college students',
         contact: 'sphuran.ees@gmail.com',
-        image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1770563345/adhyan_e4fzxu.svg',
+        image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772354777/DSC_0396_q2t4y7.jpg',
     },
     {
         title: 'Vidyut Gyan',
@@ -119,7 +119,7 @@ export const events: Event[] = [
         ],
         eligibility: 'Open to all students',
         contact: 'sphuran.ees@gmail.com',
-        image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1770563231/quiz1_usouxw.svg',
+        image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772354706/DSC_0421_dxy69q.jpg',
     },
     {
         title: 'Online Gaming',
@@ -159,7 +159,7 @@ export const events: Event[] = [
         ],
         eligibility: 'EES Alumni and current students',
         contact: 'sphuran.ees@gmail.com',
-        image: IMAGES.events.alumniMeeting,
+        image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772354644/DSC_0952_twpcbc.jpg',
         isSpecialEvent: true,
     },
     {
