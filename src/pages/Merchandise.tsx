@@ -19,6 +19,7 @@ import {
   AVAILABLE_SIZES,
   PREMIUM_BADGES,
   PRODUCT_INFO,
+  SIZE_CHART,
   type Size,
 } from '@/lib/merchandiseData';
 
@@ -243,11 +244,52 @@ function ProductInfo() {
         {PRODUCT_INFO.descriptions.map((desc, index) => (
           <p
             key={index}
-            className="font-body text-xs md:text-sm text-[#5c4a32]/70 leading-relaxed"
+            className="font-body text-xs md:text-sm text-[#5c4a32]/70 leading-relaxed whitespace-pre-line"
           >
             {desc}
           </p>
         ))}
+      </div>
+
+      {/* Pricing */}
+      <div className="bg-[#6b1c1c]/10 border border-[#6b1c1c]/30 rounded-lg p-4">
+        <p className="font-display text-sm text-[#6b1c1c] font-bold mb-2">PRICING</p>
+        <div className="space-y-1 text-sm">
+          <p className="text-[#6b1c1c] font-semibold">Normal Size – {PRODUCT_INFO.pricing.normal}</p>
+          <p className="text-[#6b1c1c] font-semibold">Oversized – {PRODUCT_INFO.pricing.oversized}</p>
+        </div>
+        <p className="mt-3 text-xs text-[#6b1c1c]/80 font-medium">
+          Order Deadline: {PRODUCT_INFO.pricing.deadline}
+        </p>
+      </div>
+
+      {/* Size Chart */}
+      <div className="border-t border-[#c4b49a] pt-6">
+        <p className="font-display text-sm text-[#5c4a32] tracking-wider mb-3">
+          SIZE CHART (in inches)
+        </p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs md:text-sm text-[#5c4a32]/80">
+            <thead>
+              <tr className="border-b border-[#c4b49a]">
+                <th className="py-2 px-2 text-left font-display">Size</th>
+                <th className="py-2 px-2 text-center font-display">Chest</th>
+                <th className="py-2 px-2 text-center font-display">Length</th>
+                <th className="py-2 px-2 text-center font-display">Shoulder</th>
+              </tr>
+            </thead>
+            <tbody>
+              {SIZE_CHART.map((row) => (
+                <tr key={row.size} className="border-b border-[#c4b49a]/50">
+                  <td className="py-1.5 px-2 font-display">{row.size}</td>
+                  <td className="py-1.5 px-2 text-center">{row.chest}</td>
+                  <td className="py-1.5 px-2 text-center">{row.frontLength}</td>
+                  <td className="py-1.5 px-2 text-center">{row.shoulder}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {/* Official Badge */}

@@ -19,10 +19,19 @@ export const PRODUCT_IMAGES: ProductImage[] = [
   },
 ];
 
-export const AVAILABLE_SIZES = ['S', 'M', 'L', 'XL', '2XL'] as const;
+export const AVAILABLE_SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'] as const;
 export type Size = (typeof AVAILABLE_SIZES)[number];
 
 export const PREMIUM_BADGES = ['PREMIUM QUALITY', 'PREMIUM FABRIC', 'PREMIUM FINISH'] as const;
+
+export const SIZE_CHART = [
+  { size: 'XS', chest: 32.0, frontLength: 24.5, shoulder: 20.0 },
+  { size: 'S', chest: 34.0, frontLength: 25.0, shoulder: 21.0 },
+  { size: 'M', chest: 36.0, frontLength: 25.5, shoulder: 22.0 },
+  { size: 'L', chest: 38.0, frontLength: 26.0, shoulder: 23.0 },
+  { size: 'XL', chest: 40.0, frontLength: 26.5, shoulder: 24.0 },
+  { size: 'XXL', chest: 42.0, frontLength: 27.0, shoulder: 25.0 },
+] as const;
 
 export const PRODUCT_INFO = {
   title: 'PREMIUM DROP',
@@ -31,12 +40,16 @@ export const PRODUCT_INFO = {
   tagline:
     'Elevate your everyday wear with our Premium Cotton T-Shirt, designed for a refined feel and a more tailored, medium-weight fit than standard tees.',
   descriptions: [
-    'Crafted from top-grade Combed Compact Cotton, this shirt offers an incredibly smooth, soft texture with a sleek, structured drape. Featuring a rich 190-210 GSM fabric weight, it delivers a dense and polished finish that feels luxurious and long-lasting.',
-    'Engineered with a compact weaving technique, the fabric resists shrinking and maintains its original shape and dimensions — even after countless washes and extended use.',
+    '• Premium quality fabric for maximum comfort\n• Exclusive SPHURAN 4.0 themed design\n• Personalized name Printing\n• Choose between Normal Fit and Oversized Fit',
   ],
+  pricing: {
+    normal: '₹329',
+    oversized: '₹349',
+    deadline: '8th March, 12:00 PM',
+  },
   officialBadge: {
     title: 'SPHURAN 4.0 OFFICIAL',
     subtitle: 'Limited Edition Collection',
   },
-  buyLink: 'https://forms.gle/your-google-form-link',
+  buyLink: 'https://forms.gle/Nb3oFcqaEPU1qRWD7',
 };
