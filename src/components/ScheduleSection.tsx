@@ -3,15 +3,10 @@ import { useInView } from '@/hooks/use-in-view';
 import { scheduleData } from '@/lib/scheduleData';
 import { MapPin, Clock } from 'lucide-react';
 
-// Timeline colors for events
-const eventColors = [
-  'bg-cyan-500',
-  'bg-amber-500', 
-  'bg-slate-500',
-  'bg-orange-500',
-  'bg-teal-500',
-  'bg-rose-500',
-  'bg-violet-500',
+// Timeline colors for events - premium aesthetic palette (alternating)
+const eventStyles = [
+  { bg: 'bg-[#CE7E5A]', text: 'text-white', textMuted: 'text-white/80' },      // Olive brown
+  { bg: 'bg-[#e0d6c4]', text: 'text-[#5c4a32]', textMuted: 'text-[#5c4a32]/70' }, // Light tan/warm grey
 ];
 
 const ScheduleSection = memo(() => {
@@ -58,29 +53,29 @@ const ScheduleSection = memo(() => {
                 <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-border" />
 
                 {day.events.map((event, eventIndex) => {
-                  const colorClass = eventColors[eventIndex % eventColors.length];
+                  const style = eventStyles[eventIndex % eventStyles.length];
                   return (
                     <div key={eventIndex} className="relative flex items-start gap-4 mb-6 last:mb-0">
                       {/* Step Circle */}
-                      <div className={`relative z-10 flex-shrink-0 w-12 h-12 ${colorClass} rounded-full flex items-center justify-center shadow-lg`}>
-                        <span className="text-white font-display font-bold text-lg">
+                      <div className={`relative z-10 flex-shrink-0 w-12 h-12 ${style.bg} rounded-full flex items-center justify-center shadow-lg`}>
+                        <span className={`${style.text} font-display font-bold text-lg`}>
                           {String(eventIndex + 1).padStart(2, '0')}
                         </span>
                       </div>
 
                       {/* Event Card */}
-                      <div className={`flex-1 ${colorClass} rounded-full py-3 px-5 shadow-md hover:shadow-lg transition-shadow duration-300`}>
+                      <div className={`flex-1 ${style.bg} rounded-full py-3 px-5 shadow-md hover:shadow-lg transition-shadow duration-300`}>
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                           <div className="flex-1">
-                            <h4 className="font-display text-white font-semibold text-base">
+                            <h4 className={`font-display ${style.text} font-semibold text-base`}>
                               {event.title}
                             </h4>
                             <div className="flex flex-wrap items-center gap-3 mt-1">
-                              <span className="flex items-center gap-1 text-white/80 text-xs">
+                              <span className={`flex items-center gap-1 ${style.textMuted} text-xs`}>
                                 <Clock className="w-3 h-3" />
                                 {event.time}
                               </span>
-                              <span className="flex items-center gap-1 text-white/80 text-xs">
+                              <span className={`flex items-center gap-1 ${style.textMuted} text-xs`}>
                                 <MapPin className="w-3 h-3" />
                                 {event.venue}
                               </span>
