@@ -16,6 +16,7 @@ interface EventDetailModalProps {
   icon: LucideIcon;
   category: string;
   date: string;
+  time?: string;
   prize: string;
   venue?: string;
   teamSize?: string;
@@ -36,6 +37,7 @@ const EventDetailModal = memo(({
   icon: Icon,
   category,
   date,
+  time,
   prize,
   venue = 'Main Auditorium, IIEST Shibpur',
   teamSize = '1-4 members',
@@ -105,6 +107,23 @@ const EventDetailModal = memo(({
               <p className="text-sm font-display font-semibold text-foreground">{venue}</p>
             </div>
           </div>
+
+          {/* Time/Schedule */}
+          {time && (
+            <div className="p-4 bg-background border border-border rounded-lg">
+              <h4 className="font-display text-sm font-semibold text-foreground uppercase tracking-wider mb-3">
+                Schedule
+              </h4>
+              <ul className="space-y-2">
+                {time.split('|').map((round, index) => (
+                  <li key={index} className="font-body text-sm text-muted-foreground flex items-start gap-2">
+                    <span className="text-primary mt-0.5 font-semibold min-w-[20px]">{index + 1}.</span>
+                    <span>{round.trim()}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {/* Eligibility */}
           <div className="p-4 bg-background border border-border rounded-lg">

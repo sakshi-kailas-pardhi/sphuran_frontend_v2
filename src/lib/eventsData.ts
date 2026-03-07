@@ -7,6 +7,7 @@ export interface Event {
     icon: any;
     category: string;
     date: string;
+    time?: string;
     prize: string;
     venue?: string;
     teamSize?: string;
@@ -25,9 +26,10 @@ export const events: Event[] = [
         description: 'An industry-collaborated quiz that tests core Electrical Engineering concepts like machines, power systems, and control systems, offering prizes and recognition to top performers.',
         icon: Lightbulb,
         category: 'Quiz',
-        date: 'Day 1',
+        date: 'March 13-15',
+        time: 'Round 1: Mar 13, 6:00-7:30 PM | Round 2: Mar 14, 1:30-3:00 PM | Round 3: Mar 15, 11:00 AM-12:30 PM',
         prize: 'TBA',
-        venue: 'Seminar Hall',
+        venue: 'Seminar Hall, S470',
         teamSize: '2-3 members',
         rules: [
             'Questions on core EE concepts: machines, power systems, control systems',
@@ -44,9 +46,10 @@ export const events: Event[] = [
         description: 'A circuit design and simulation event that challenges participants to create efficient and innovative electronic solutions. Includes both simulation and hands-on hardware rounds to bring designs to life.',
         icon: Zap,
         category: 'Circuit Simulation',
-        date: 'Day 1',
+        date: 'March 14',
+        time: 'Round 1: 10:00-11:30 AM | Round 2: 4:30-6:00 PM',
         prize: 'TBA',
-        venue: 'Electronics Lab',
+        venue: 'S464',
         teamSize: '1-3 members',
         rules: [
             'Design efficient and innovative electronic circuits',
@@ -63,9 +66,10 @@ export const events: Event[] = [
         description: 'A competitive coding contest testing problem solving skills and programming expertise. A platform for coders to innovate, compete, and push their limits.',
         icon: Code,
         category: 'Coding',
-        date: 'Day 2',
+        date: 'March 14',
+        time: '11:30 AM - 12:30 PM',
         prize: 'TBA',
-        venue: 'Computer Lab',
+        venue: 'S464',
         teamSize: '1-2 members',
         rules: [
             'Competitive programming problems',
@@ -82,9 +86,10 @@ export const events: Event[] = [
         description: 'A case study competition focused on analyzing real world tech and business challenges. Test your problem solving, innovation, and strategic thinking skills.',
         icon: BookOpen,
         category: 'Case Study',
-        date: 'Day 2',
+        date: 'March 13-14',
+        time: 'Round 1: Mar 13, 7:30-8:00 PM (Online) | Round 2: Mar 14, 11:00 AM-12:30 PM',
         prize: 'TBA',
-        venue: 'Seminar Hall',
+        venue: 'Online, S470',
         teamSize: '2-4 members',
         rules: [
             'Analyze real-world tech and business challenges',
@@ -101,9 +106,10 @@ export const events: Event[] = [
         description: 'An open mic quiz celebrating intellect, patience, and strategic brilliance. This competition brings together sharp minds to battle, where every answer counts and knowledge defines victory.',
         icon: Brain,
         category: 'Open Mic Quiz',
-        date: 'Day 2',
+        date: 'March 14-15',
+        time: 'Round 1: Mar 14, 3:00-4:30 PM | Round 2: Mar 15, 10:00-11:00 AM',
         prize: 'TBA',
-        venue: 'Main Auditorium',
+        venue: 'Seminar Hall',
         teamSize: '2-3 members',
         rules: [
             'Open mic format quiz',
@@ -120,9 +126,10 @@ export const events: Event[] = [
         description: 'Intense gaming events featuring MotoGP and FIFA. Players compete in matches showcasing strategy, reflexes, and teamwork. A perfect platform to test your gaming skills and gain victory.',
         icon: Gamepad2,
         category: 'Gaming',
-        date: 'All Days',
+        date: 'March 13-14',
+        time: 'Mar 13: 7:30-9:30 PM | Mar 14: 6:30-8:30 PM',
         prize: 'TBA',
-        venue: 'Online',
+        venue: 'Parade Ground',
         teamSize: '1-2 players',
         rules: [
             'Games: MotoGP and FIFA',
@@ -139,9 +146,10 @@ export const events: Event[] = [
         description: 'A special gathering to reconnect alumni, share experiences, and celebrate a journey of innovation and learning—strengthening alumni-student bonds through inspiration, mentorship, and growth within the EES community.',
         icon: Users,
         category: 'Networking',
-        date: 'To Be Announced',
+        date: 'March 15',
+        time: '1:30 - 3:30 PM',
         prize: '-',
-        venue: 'To Be Announced',
+        venue: 'I-Hall',
         teamSize: 'Open',
         rules: [
             'Reconnect with alumni and celebrate shared experiences',
@@ -159,9 +167,10 @@ export const events: Event[] = [
         description: 'The T-Shirt Distribution Drive is a social initiative aimed at promoting community welfare and collective responsibility. Through this drive, essential clothing is distributed to individuals, reinforcing the values of compassion, inclusivity, and social commitment while encouraging active participation in community service.',
         icon: Heart,
         category: 'Social Initiative',
-        date: 'To Be Announced',
+        date: 'March 15',
+        time: '1:30 - 3:30 PM',
         prize: '-',
-        venue: 'To Be Announced',
+        venue: 'I-Hall',
         teamSize: 'Volunteers',
         rules: [
             'Social initiative promoting community welfare',
@@ -179,9 +188,10 @@ export const events: Event[] = [
         description: 'A curated dance performance highlighting rhythm, expression, and artistic excellence. A celebration of movement and creativity.',
         icon: Music,
         category: 'Cultural',
-        date: 'To Be Announced',
+        date: 'March 15',
+        time: '4:30 - 6:00 PM',
         prize: '-',
-        venue: 'To Be Announced',
+        venue: 'Netaji Bhavan',
         teamSize: 'Performance Team',
         rules: [
             'Curated dance performance showcasing talent',
