@@ -84,7 +84,7 @@ export const teamData: TeamData = {
   sponsorship: {
     head: [
       { name: 'Rudra Pratap Singh', year: 4 },
-      { name: 'Esha Kumari', year: 4 },
+      { name: 'Esha Kumari', year: 4, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1773124917/IMG_20260123_150700_-_2022EEB064_2022EEB064_ESHA_cuzjgf.jpg' },
       { name: 'Hrishit Das', year: 4 }
     ],
     associateHead: [
