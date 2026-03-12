@@ -50,7 +50,7 @@ export const teamData: TeamData = {
   mainCoordinators: [
     { name: 'Devendra Prasad', year: 4, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382526/IMG-20241102-WA0004_3_-_2022EEB059_2022EEB059_DEVENDRA_lketvf.jpg' },
     { name: 'Deepak Garg', year: 4, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382451/IMG_20260117_182219151_HDR_AE_1_-_2022EEB082_2022EEB082_DEEPAK_uxfwy2.jpg' },
-    { name: 'Ambhrin Roy', year: 4 }
+    { name: 'Ambhrin Roy', year: 4, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1773337835/AMBHRIN_ROY_y2vbxf.jpg' }
   ],
   jointCoordinators: [
     { name: 'Aman Kumar Mehta', year: 3, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382461/IMG-20241022-WA0063_-_2023EEB069_AMAN_KUMAR_ffubww.jpg' },
