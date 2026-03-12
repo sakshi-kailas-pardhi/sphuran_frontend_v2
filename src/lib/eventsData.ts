@@ -95,7 +95,7 @@ export const events: Event[] = [
         description: 'In collaboration with the Co-Innovation Centre (CIC), the Electrical Engineering Society presents ADHYAYAN—the flagship case study competition of SPHURAN 4.0. This is more than just a contest; it’s a platform to tackle real-world challenges with deep-tech solutions.',
         icon: BookOpen,
         category: 'Case Study',
-        date: 'March 13, 14, 15',
+        date: 'March 13, 14',
         time: 'Round 1: Mar 13, 7:30-8:00 PM (Online) | Round 2: Mar 14, 11:00 AM-12:30 PM (S470, 3rd floor, EE Dept.)',
         prize: '₹6.5K + CIC Prototype Funding',
         venue: 'R1: EE Seminar Hall, 2nd floor, EE Dept. | R2: S470, 3rd floor, EE Dept.',
