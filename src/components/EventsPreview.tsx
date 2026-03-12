@@ -1,6 +1,6 @@
 import { memo, useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Lightbulb } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import EventCard from './EventCard';
 import EventDetailModal from './EventDetailModal';
 import { events, Event } from '@/lib/eventsData';
@@ -9,7 +9,6 @@ import { useInView } from '@/hooks/use-in-view';
 const EventsPreview = memo(() => {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const headerRef = useInView({ threshold: 0.2, triggerOnce: false });
-  const flagshipRef = useInView({ threshold: 0.2, triggerOnce: false });
   
   // Separate competitive events from special events
   const competitiveEvents = events.filter(e => !e.isSpecialEvent);
@@ -24,11 +23,6 @@ const EventsPreview = memo(() => {
 
   const handleCloseModal = useCallback(() => {
     setSelectedEvent(null);
-  }, []);
-
-  const handleFlagshipClick = useCallback(() => {
-    const electroquip = events.find(e => e.title === 'ELECTROQUIP');
-    if (electroquip) setSelectedEvent(electroquip);
   }, []);
 
   return (
@@ -65,41 +59,6 @@ const EventsPreview = memo(() => {
               View All Events
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
-          </div>
-        </div>
-
-        {/* Featured Event Highlight */}
-        <div 
-          ref={flagshipRef.ref}
-          className={`mb-12 p-8 md:p-12 border border-primary/30 bg-primary/5 rounded-lg relative overflow-hidden transition-all duration-700 delay-200 ${
-            flagshipRef.isInView 
-              ? 'opacity-100 scale-100' 
-              : 'opacity-0 scale-95'
-          }`}
-        >
-          <div className="absolute top-4 right-4 px-3 py-1 bg-primary text-primary-foreground text-xs font-display tracking-wider rounded-full">
-            FLAGSHIP
-          </div>
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <span className="font-body text-xs tracking-widest text-primary uppercase">Industry Collaborated</span>
-              <h3 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2">
-                ELECTROQUIP
-              </h3>
-              <p className="font-body text-muted-foreground mt-4 leading-relaxed">
-                An industry-collaborated quiz that tests core Electrical Engineering concepts like machines, 
-                power systems, and control systems. Compete for prizes and recognition as a top performer.
-              </p>
-              <button 
-                onClick={handleFlagshipClick}
-                className="mt-6 px-6 py-3 bg-primary text-primary-foreground font-display text-sm tracking-wider hover:bg-primary/90 transition-all"
-              >
-                VIEW DETAILS
-              </button>
-            </div>
-            <div className="flex justify-center">
-              <Lightbulb className="w-32 h-32 md:w-48 md:h-48 text-primary/20" strokeWidth={1} />
-            </div>
           </div>
         </div>
 
