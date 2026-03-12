@@ -54,7 +54,7 @@ export const teamData: TeamData = {
   ],
   jointCoordinators: [
     { name: 'Aman Kumar Mehta', year: 3, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382461/IMG-20241022-WA0063_-_2023EEB069_AMAN_KUMAR_ffubww.jpg' },
-    { name: 'Sandip Kumar Das', year: 3 }
+    { name: 'Sandip Kumar Das', year: 3, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1773307428/2023EEB030_SANDIP_KD_fuxset.jpg' }
   ],
   financeAudit: {
     head: [{ name: 'Niloy Mondal', year: 4 }],
