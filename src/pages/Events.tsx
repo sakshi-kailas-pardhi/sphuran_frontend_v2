@@ -45,7 +45,7 @@ const Events = memo(() => {
   }, []);
 
   const handleFlagshipClick = useCallback(() => {
-    const electroquip = events.find(e => e.title === 'Electroquip');
+    const electroquip = events.find(e => e.title === 'ELECTROQUIP');
     if (electroquip) setSelectedEvent(electroquip);
   }, []);
 
