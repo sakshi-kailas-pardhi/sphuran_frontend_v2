@@ -165,16 +165,11 @@ export const events: Event[] = [
         time: 'Mar 13: 7:30-9:30 PM | Mar 14: 6:30-8:30 PM',
         prize: 'Win prizes worth ₹4.5K!',
         venue: 'Parade Ground',
-        teamSize: '1-2 players',
-        // rules: [
-        //     'FIFA football game competition',
-        //     'Compete in intense matches',
-        //     'Strategy and teamwork tested',
-        //     'Online participation'
-        // ],
+        teamSize: '1 player',
         eligibility: 'Open to all gaming enthusiasts',
         contact: 'sphuran.ees@gmail.com',
         registrationLink: 'https://forms.gle/tZXSs7U8AReqHXXKA',
+        rulebookLink: 'https://drive.google.com/file/d/1nQyLtT-GhZ3-q5i3e-_UMbqzeE8N0s4D/view?usp=drive_link',
         image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1770563231/video_game_n6vibt.svg',
     },
     {
