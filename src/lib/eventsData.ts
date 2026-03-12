@@ -77,15 +77,17 @@ export const events: Event[] = [
         prize: 'Win prizes worth ₹6.5K!',
         venue: 'S464, 3rd floor, EE Dept.',
         teamSize: '1-2 members',
-        // rules: [
-        //     'Competitive programming problems',
-        //     'Tests problem-solving and coding expertise',
-        //     'Multiple rounds with time constraints',
-        //     'Platform to innovate and push limits'
-        // ],
+        rules: [
+            'Competitive programming contest with multiple rounds and strict time constraints.',
+            'Use of standard programming language libraries and personal templates is allowed.',
+            'Discussion is allowed only within your registered team (maximum 2 members).',
+            'Access to general programming documentation and references is permitted.',
+            'Use of LLMs and AI-based tools (such as ChatGPT, Copilot, Gemini, AI Browser, Google AI Mode, etc.) is strictly prohibited.'
+        ],
         eligibility: 'Open to all students with programming knowledge',
         contact: 'sphuran.ees@gmail.com',
         registrationLink: 'https://forms.gle/3MZdPAGimgXuWEBa8',
+        rulebookLink: 'https://drive.google.com/file/d/1O2hBZI8ju1eRXqU-XDRUGyyeJE3Vqb59/view?usp=drive_link',
         image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1770563231/coding_uffkpq.svg',
     },
     {
