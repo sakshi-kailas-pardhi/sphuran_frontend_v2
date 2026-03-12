@@ -121,7 +121,7 @@ const HeroSection = memo(() => {
           </div>
           <div className="text-center">
             <CounterUp 
-              end={50} 
+              end={60} 
               prefix="₹" 
               suffix="K+" 
               duration={2500}
