@@ -81,7 +81,7 @@ const EventsPreview = memo(() => {
             to="/events"
             className="group inline-flex items-center gap-2 px-8 py-4 border-2 border-primary text-primary font-display text-sm tracking-wider hover:bg-primary hover:text-primary-foreground transition-all"
           >
-            Explore All {competitiveEvents.length} Competitive Events + {specialEventsCount} Special Events
+            Explore All Events
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
