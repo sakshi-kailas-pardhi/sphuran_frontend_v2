@@ -4,12 +4,9 @@ import { Menu, Home, Calendar, Users, Trophy, Image, Mail, Shirt } from 'lucide-
 import { FaInstagram, FaFacebook, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import ChipsTab from './ui/tabs/ChipsTab';
 import { StaggeredMenu } from './ui/tabs/StaggeredMenu';
-import { Countdown } from './ui/animatedComponents/countdown';
 import { SocialLinks } from '@/lib/utils';
 import { IMAGES } from '@/lib/assets';
 
-// Event start date: March 13, 2026 at 00:00:00 IST
-const EVENT_DATE = new Date('2026-03-13T00:00:00+05:30');
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -187,13 +184,16 @@ const Navbar = memo(() => {
         scrolled ? 'bg-black/95 backdrop-blur-md border-b border-border' : 'bg-transparent'
       } h-20`} />
 
-      {/* Mobile Countdown - Centered in mobile header */}
+      {/* Mobile Live Badge - Centered in mobile header */}
       <div className="lg:hidden fixed top-0 left-0 right-0 z-[45] h-20 flex items-center justify-center pointer-events-none">
-        <div className="flex flex-col items-center">
-          <span className="font-body text-[10px] tracking-widest uppercase text-white/70 mb-1">
-            The wait ends in...
+        <div className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-500/40 bg-red-500/10">
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500" />
           </span>
-          <Countdown targetDate={EVENT_DATE} variant="compact" />
+          <span className="font-display text-xs tracking-[0.2em] uppercase text-red-400 font-bold">
+            Event is Live
+          </span>
         </div>
       </div>
       
@@ -257,12 +257,15 @@ const Navbar = memo(() => {
               />
             </div> */}
 
-            {/* Countdown Timer - Center */}
-            <div className="flex flex-col items-center">
-              <span className="font-body text-[30px] tracking-widest uppercase text-muted-foreground mb-1">
-                The wait ends in...
+            {/* Live Badge - Center */}
+            <div className="flex items-center gap-3 px-5 py-2 rounded-full border border-red-500/40 bg-red-500/10">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500" />
               </span>
-              <Countdown targetDate={EVENT_DATE} variant="compact" />
+              <span className="font-display text-sm tracking-[0.25em] uppercase text-red-400 font-bold">
+                Event is Live
+              </span>
             </div>
 
             {/* CTA Button - Hidden on mobile */}
