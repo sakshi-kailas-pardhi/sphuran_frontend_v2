@@ -9,17 +9,17 @@ export const generateEventSchema = (event: Event) => {
     return null;
   }
 
-  // Map generic day descriptions to actual dates
-  const getEventDate = (day: string): string => {
-    if (day === 'Day 1') return '2026-03-01';
-    if (day === 'Day 2') return '2026-03-02';
-    if (day === 'All Days') return '2026-03-01'; // Start date for multi-day events
-    return '2026-03-01'; // Default
+  // Parse actual date strings like "March 13", "March 14-15", "March 13, 14, 15"
+  const getEventDate = (dateStr: string): string => {
+    const days = [...dateStr.matchAll(/\b(1[3-5])\b/g)].map(m => parseInt(m[1]));
+    const first = days.length > 0 ? days[0] : 13;
+    return `2026-03-${String(first).padStart(2, '0')}`;
   };
 
-  const getEventEndDate = (day: string): string => {
-    if (day === 'All Days') return '2026-03-02';
-    return getEventDate(day); // Same day events
+  const getEventEndDate = (dateStr: string): string => {
+    const days = [...dateStr.matchAll(/\b(1[3-5])\b/g)].map(m => parseInt(m[1]));
+    const last = days.length > 0 ? Math.max(...days) : 13;
+    return `2026-03-${String(last).padStart(2, '0')}`;
   };
 
   return {
