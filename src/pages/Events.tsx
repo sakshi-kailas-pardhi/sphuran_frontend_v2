@@ -159,7 +159,7 @@ const Events = memo(() => {
                       An industry-collaborated quiz that tests core Electrical Engineering concepts like machines, 
                       power systems, and control systems. Compete for prizes and recognition as a top performer.
                     </p>
-                    <button 
+                     <button 
                       onClick={handleFlagshipClick}
                       className="mt-6 px-6 py-3 bg-primary text-primary-foreground font-display text-sm tracking-wider hover:bg-primary/90 transition-all"
                     >
