@@ -71,7 +71,7 @@ export const teamData: TeamData = {
     ],
     associateHead: [
       { name: 'Sumit Kumar', year: 3, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382382/IMG-20260121-WA0000_-_2023EEB110_SUMIT_KUMAR_idxzd0.jpg' },
-      { name: 'Anshita', year: 3 },
+      { name: 'Anshita', year: 3, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1773378513/IMG_20260312_222907_-_2023EEB096_ANSHITA__ffh5nx.jpg' },
       { name: 'Aarush Roy', year: 3, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382433/ee_-_2023EEB028_AARUSH_ROY_vca5ct.png' }
     ],
     associates: [
@@ -91,7 +91,7 @@ export const teamData: TeamData = {
       { name: 'Amit Kiran Das', year: 3, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382416/4ad27705-f999-4fc5-838d-9e4f24fbef1f_-_2023EEB015_AMIT_KIRAN_DAS_pybbqi.jpg' },
       { name: 'Keshav Bhagat', year: 3, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772382599/IMG_1554_-_2023EEB108_KESHAV_BHAGAT_d6fwwp.jpg' },
       { name: 'Banoth Amitha', year: 3 },
-      { name: 'Shreya Sen', year: 3 }
+      { name: 'Shreya Sen', year: 3, image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1773378608/IMG20260301075533_-_2023EEB080_SHREYA_SEN_ky6j2h.jpg' }
     ],
     associates: [
       { name: 'Ahana pal', year: 2 },
