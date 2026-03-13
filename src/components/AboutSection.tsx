@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { IMAGES } from '@/lib/assets';
+import { logos } from '@/lib/logoData';
 import { useInView } from '@/hooks/use-in-view';
 import { CounterUp } from './ui/animatedComponents/counterUp';
 
@@ -69,7 +69,7 @@ const AboutSection = memo(() => {
                 }`}
             >
               <img
-                src={IMAGES.logos.sphuran}
+                src={logos.sphuran}
                 alt="SPHURAN 4.0 Logo - Annual Technical Festival by Electrical Engineers' Society"
                 className="w-20 h-20 object-contain rounded-xl"
               />
@@ -97,7 +97,7 @@ const AboutSection = memo(() => {
                 className="flex items-start gap-4 p-6 bg-card border border-border rounded-lg hover:border-primary/50 hover:bg-card/80 cursor-pointer group transition-all duration-300"
               >
                 <img
-                  src={IMAGES.logos.ees}
+                  src={logos.ees}
                   alt="Electrical Engineering"
                   className="w-14 h-14 object-contain group-hover:scale-110 transition-transform duration-300"
                 />

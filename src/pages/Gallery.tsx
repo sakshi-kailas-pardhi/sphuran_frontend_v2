@@ -7,7 +7,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { SEO } from '@/components/SEO';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { GALLERY_IMAGES } from '@/lib/assets';
+import { galleryImages } from '@/lib/galleryData';
 
 // Social share icons as SVG components
 const FacebookIcon = () => (
@@ -158,7 +158,7 @@ const Gallery = () => {
         const imageParam = searchParams.get('image');
         if (imageParam !== null) {
             const imageIndex = parseInt(imageParam, 10);
-            if (!isNaN(imageIndex) && imageIndex >= 0 && imageIndex < GALLERY_IMAGES.length) {
+            if (!isNaN(imageIndex) && imageIndex >= 0 && imageIndex < galleryImages.length) {
                 setSelectedImage(imageIndex);
             }
         }
@@ -173,7 +173,7 @@ const Gallery = () => {
         }
     };
 
-    const imageIndex = selectedImage !== null ? wrap(0, GALLERY_IMAGES.length, page) : 0;
+    const imageIndex = selectedImage !== null ? wrap(0, galleryImages.length, page) : 0;
 
     // Helper functions to open/close lightbox with URL sync
     const openLightbox = (index: number) => {
@@ -189,7 +189,7 @@ const Gallery = () => {
     const paginate = (newDirection: number) => {
         setPage(([currentPage, _]) => {
             const newPage = currentPage + newDirection;
-            const newIndex = wrap(0, GALLERY_IMAGES.length, newPage);
+            const newIndex = wrap(0, galleryImages.length, newPage);
             updateUrlParam(newIndex);
             return [newPage, newDirection];
         });
@@ -238,7 +238,7 @@ const Gallery = () => {
     };
 
     const getShareText = () => {
-        return `Check out this moment from SPHURAN 4.0 - ${GALLERY_IMAGES[imageIndex]?.title || 'Gallery'}`;
+        return `Check out this moment from SPHURAN 4.0 - ${galleryImages[imageIndex]?.title || 'Gallery'}`;
     };
 
     const shareToFacebook = () => {
@@ -269,7 +269,7 @@ const Gallery = () => {
     // Download image
     const downloadImage = async () => {
         try {
-            const image = GALLERY_IMAGES[imageIndex];
+            const image = galleryImages[imageIndex];
             const response = await fetch(image.src);
             const blob = await response.blob();
             const url = window.URL.createObjectURL(blob);
@@ -287,7 +287,7 @@ const Gallery = () => {
         } catch (err) {
             console.error('Failed to download image:', err);
             // Fallback: open image in new tab
-            window.open(GALLERY_IMAGES[imageIndex].src, '_blank');
+            window.open(galleryImages[imageIndex].src, '_blank');
         }
     };
 
@@ -379,7 +379,7 @@ const Gallery = () => {
                     <section className="py-12 px-4">
                         <div className="container mx-auto max-w-7xl">
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-                                {GALLERY_IMAGES.map((image, index) => (
+                                {galleryImages.map((image, index) => (
                                     <LazyImage
                                         key={index}
                                         src={image.src}
@@ -545,8 +545,8 @@ const Gallery = () => {
                                         >
                                             <div className="relative max-w-[95vw] max-h-[90vh] select-none">
                                                 <img
-                                                    src={GALLERY_IMAGES[imageIndex].src}
-                                                    alt={GALLERY_IMAGES[imageIndex].alt}
+                                                    src={galleryImages[imageIndex].src}
+                                                    alt={galleryImages[imageIndex].alt}
                                                     className="max-w-full max-h-[90vh] object-contain rounded-lg pointer-events-none"
                                                     draggable={false}
                                                 />
@@ -554,15 +554,15 @@ const Gallery = () => {
                                                 {/* Image Caption */}
                                                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 md:p-6 rounded-b-lg">
                                                     <p className="text-white font-semibold text-base md:text-lg">
-                                                        {GALLERY_IMAGES[imageIndex].title}
+                                                        {galleryImages[imageIndex].title}
                                                     </p>
-                                                    {GALLERY_IMAGES[imageIndex].description && (
+                                                    {galleryImages[imageIndex].description && (
                                                         <p className="text-white/80 text-xs md:text-sm mt-1">
-                                                            {GALLERY_IMAGES[imageIndex].description}
+                                                            {galleryImages[imageIndex].description}
                                                         </p>
                                                     )}
                                                     <p className="text-white/60 text-xs mt-2">
-                                                        {imageIndex + 1} / {GALLERY_IMAGES.length}
+                                                        {imageIndex + 1} / {galleryImages.length}
                                                     </p>
                                                 </div>
                                             </div>

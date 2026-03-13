@@ -5,7 +5,7 @@ import { FaInstagram, FaFacebook, FaLinkedin, FaWhatsapp } from 'react-icons/fa'
 import ChipsTab from './ui/tabs/ChipsTab';
 import { StaggeredMenu } from './ui/tabs/StaggeredMenu';
 import { SocialLinks } from '@/lib/utils';
-import { IMAGES } from '@/lib/assets';
+import { logos } from '@/lib/logoData';
 
 import {
   DropdownMenu,
@@ -206,7 +206,7 @@ const Navbar = memo(() => {
           socialItems={socialLinks}
           displaySocials={true}
           displayItemNumbering={true}
-          logoUrl={IMAGES.logos.sphuran}
+          logoUrl={logos.sphuran}
           menuButtonColor={scrolled ? '#ffffff' : '#ffffff'}
           openMenuButtonColor="#000000"
           accentColor="#6366f1"
@@ -234,7 +234,7 @@ const Navbar = memo(() => {
               }}
             >
               <img 
-                src={IMAGES.logos.sphuran} 
+                src={logos.sphuran} 
                 alt="SPHURAN 4.0 Festival Logo" 
                 className="h-10 w-10 md:h-12 md:w-12 object-contain rounded-lg "
               />

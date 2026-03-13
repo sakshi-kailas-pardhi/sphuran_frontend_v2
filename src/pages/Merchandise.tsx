@@ -13,9 +13,10 @@ import { useInView } from '@/hooks/use-in-view';
 import { useProductPreview } from '@/hooks/use-product-preview';
 
 // Data & Assets
-import { IMAGES } from '@/lib/assets';
+import { logos } from '@/lib/logoData';
+import { tshirtHeroImages } from '@/lib/merchandiseData';
 import {
-  PRODUCT_IMAGES,
+  tshirtModalImages,
   AVAILABLE_SIZES,
   PREMIUM_BADGES,
   PRODUCT_INFO,
@@ -73,7 +74,7 @@ function LeftPanel() {
       <div className="absolute bottom-20 left-8 w-20 h-20 md:w-24 md:h-24 rounded-full border-4 border-[#8b7355]/30 flex items-center justify-center transform -rotate-12">
         <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-dashed border-[#8b7355]/20 flex items-center justify-center">
           <img
-            src={IMAGES.logos.ees}
+            src={logos.ees}
             alt="EES Stamp"
             className="w-10 h-10 md:w-12 md:h-12 object-contain opacity-40 grayscale"
           />
@@ -295,7 +296,7 @@ function ProductInfo() {
       {/* Official Badge */}
       <div className="flex items-center gap-3 bg-[#5c4a32]/10 rounded-lg p-4">
         <img
-          src={IMAGES.logos.sphuran}
+          src={logos.sphuran}
           alt="SPHURAN Logo"
           className="w-10 h-10 md:w-12 md:h-12 object-contain"
         />
@@ -330,7 +331,7 @@ const Merchandise = () => {
   const [selectedSize, setSelectedSize] = useState<Size>('M');
   const mainRef = useInView({ threshold: 0.1, triggerOnce: true });
 
-  const preview = useProductPreview({ images: PRODUCT_IMAGES });
+  const preview = useProductPreview({ images: tshirtModalImages });
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -366,14 +367,14 @@ const Merchandise = () => {
 
               <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
                 <ProductCard
-                  imageSrc={IMAGES.merchandise.tshirtFront}
+                  imageSrc={tshirtHeroImages.tshirtFront}
                   imageAlt="SPHURAN 4.0 Official T-Shirt - Front View"
                   label="Front"
                   rotation="left"
                   onClick={() => preview.open(0)}
                 />
                 <ProductCard
-                  imageSrc={IMAGES.merchandise.tshirtBack}
+                  imageSrc={tshirtHeroImages.tshirtBack}
                   imageAlt="SPHURAN 4.0 Official T-Shirt - Back View"
                   label="Back"
                   rotation="right"
@@ -405,7 +406,7 @@ const Merchandise = () => {
       {/* Product Preview Modal */}
       <ProductPreviewModal
         isOpen={preview.isOpen}
-        images={PRODUCT_IMAGES}
+        images={tshirtModalImages}
         currentIndex={preview.currentIndex}
         isZooming={preview.isZooming}
         zoomPosition={preview.zoomPosition}

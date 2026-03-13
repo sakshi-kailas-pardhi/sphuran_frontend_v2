@@ -1,12 +1,20 @@
 // Merchandise product data
 
+const CLOUDINARY_BASE = 'https://res.cloudinary.com/dwr8472qb/image/upload';
+
+export const tshirtHeroImages = {
+  tshirtFront: `${CLOUDINARY_BASE}/v1772645290/sphuran_tshirt_front_1440-removebg-preview_sa1xyg.png`,
+  tshirtBack: `${CLOUDINARY_BASE}/v1772645290/sphuran_tshirt_back_1440-removebg-preview_alk4sq.png`,
+};
+
+
 export interface ProductImage {
   src: string;
   alt: string;
   label: string;
 }
 
-export const PRODUCT_IMAGES: ProductImage[] = [
+export const tshirtModalImages: ProductImage[] = [
   {
     src: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772645291/sphuran_tshirt_front_1440_jy4z0u.png',
     alt: 'SPHURAN 4.0 Official T-Shirt - Front View',

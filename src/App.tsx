@@ -5,7 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import { IMAGES } from "@/lib/assets";
+import { logos } from "@/lib/logoData";
 import ScrollToTop from "@/components/ScrollToTop";
 
 // Lazy load pages for better performance
@@ -31,7 +31,7 @@ const App = () => (
           <div className="min-h-screen bg-background flex items-center justify-center">
             <div className="text-center">
               <img 
-                src={IMAGES.logos.sphuran} 
+                src={logos.sphuran} 
                 alt="SPHURAN 4.0 - Electrical Engineers' Society IIEST Shibpur Logo" 
                 className="h-24 w-24 object-contain animate-pulse mx-auto mb-4"
               />

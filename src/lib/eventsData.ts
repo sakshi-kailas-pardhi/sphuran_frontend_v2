@@ -1,5 +1,4 @@
 import { Brain, Gamepad2, Lightbulb, Code, BookOpen, Users, Heart, Music, Zap } from 'lucide-react';
-import { IMAGES } from './assets';
 
 export interface Event {
     title: string;
@@ -184,7 +183,7 @@ export const events: Event[] = [
         teamSize: '-',
         eligibility: 'Open to all',
         contact: 'sphuran.ees@gmail.com',
-        image: IMAGES.events.icche,
+        image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1770546806/sphuran-x-icche_gkfhoq.jpg',
         isSpecialEvent: true,
     },
     {
@@ -199,7 +198,7 @@ export const events: Event[] = [
         teamSize: 'Performance Team',
         eligibility: '-',
         contact: 'sphuran.ees@gmail.com',
-        image: IMAGES.events.rxb,
+        image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1770546105/sphuran-x-rxb_vhuylt.jpg',
         isSpecialEvent: true,
     },
 ];

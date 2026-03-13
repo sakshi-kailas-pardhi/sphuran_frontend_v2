@@ -1,9 +1,9 @@
 import { memo } from 'react';
 import LogoLoop from './ui/animatedComponents/logoLoop';
-import { getAllSponsors } from '@/lib/assets';
+import { pastSponsors } from '@/lib/pastSponsorData';
 
-// Get sponsor logos from centralized assets
-const sponsorLogos = getAllSponsors();
+// Get sponsor logos from centralized data
+const sponsorLogos = pastSponsors;
 
 const PastSponsers = memo(() => {
   return (
