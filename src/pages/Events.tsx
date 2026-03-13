@@ -6,12 +6,15 @@ import EventDetailModal from '@/components/EventDetailModal';
 import Footer from '@/components/Footer';
 import { BackgroundBeams } from '@/components/ui/background-beams';
 import { AnimatedCard } from '@/components/AnimatedCard';
-import { events, categories, Event } from '@/lib/eventsData';
+import { events as baseEvents, categories, Event } from '@/lib/eventsData';
+import { attachEventLinks } from '@/lib/eventLinksData';
 import { useInView } from '@/hooks/use-in-view';
 import { generateEventsListSchema } from '@/lib/structuredData';
 import { StructuredData } from '@/components/StructuredData';
 import { SEO } from '@/components/SEO';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+
+const events = baseEvents.map(attachEventLinks);
 
 const Events = memo(() => {
   const navigate = useNavigate();

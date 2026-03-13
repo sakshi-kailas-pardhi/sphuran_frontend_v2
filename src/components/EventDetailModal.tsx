@@ -44,8 +44,8 @@ const EventDetailModal = memo(({
   rules = [],
   eligibility = 'Open to all college students',
   contact = 'sphuran@eesiiests.org',
-  rulebookLink = 'https://drive.google.com',
-  registrationLink = 'https://forms.google.com',
+  rulebookLink,
+  registrationLink,
   image,
   isSpecialEvent = false,
 }: EventDetailModalProps) => {
@@ -159,28 +159,34 @@ const EventDetailModal = memo(({
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <a
-              href={registrationLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-primary text-primary-foreground font-display text-sm tracking-widest uppercase hover:bg-primary/90 transition-all duration-300 rounded-sm"
-            >
-              <UserPlus className="w-4 h-4" />
-              Register Now
-              <ExternalLink className="w-3 h-3" />
-            </a>
-            <a
-              href={rulebookLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 px-6 py-4 border border-primary text-primary font-display text-sm tracking-widest uppercase hover:bg-primary/10 transition-all duration-300 rounded-sm"
-            >
-              <FileText className="w-4 h-4" />
-              Rulebook
-              <ExternalLink className="w-3 h-3" />
-            </a>
-          </div>
+          {(registrationLink || rulebookLink) && (
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              {registrationLink && (
+                <a
+                  href={registrationLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-primary text-primary-foreground font-display text-sm tracking-widest uppercase hover:bg-primary/90 transition-all duration-300 rounded-sm"
+                >
+                  <UserPlus className="w-4 h-4" />
+                  Register Now
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              )}
+              {rulebookLink && (
+                <a
+                  href={rulebookLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 px-6 py-4 border border-primary text-primary font-display text-sm tracking-widest uppercase hover:bg-primary/10 transition-all duration-300 rounded-sm"
+                >
+                  <FileText className="w-4 h-4" />
+                  Rulebook
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              )}
+            </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>

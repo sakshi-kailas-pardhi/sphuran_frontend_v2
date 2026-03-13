@@ -2,9 +2,10 @@ import EventCard from './EventCard';
 import EventDetailModal from './EventDetailModal';
 import { useState, memo, useCallback } from 'react';
 import { Lightbulb } from 'lucide-react';
-import { events as allEvents, categories, Event } from '@/lib/eventsData';
+import { events as baseEvents, categories, Event } from '@/lib/eventsData';
+import { attachEventLinks } from '@/lib/eventLinksData';
 
-const events: Event[] = allEvents.filter(e => !e.isSpecialEvent).slice(0, 4);
+const events: Event[] = baseEvents.map(attachEventLinks).filter(e => !e.isSpecialEvent).slice(0, 4);
 
 const EventsSection = memo(() => {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);

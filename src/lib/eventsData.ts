@@ -40,8 +40,6 @@ export const events: Event[] = [
         ],
         eligibility: 'Open to all students',
         contact: 'sphuran.ees@gmail.com',
-        registrationLink: 'https://forms.gle/eBUPVxGmr3jp48RS9',
-        rulebookLink: 'https://drive.google.com/file/d/1SmHBYZEPObLqhu787okoeqaL58qTjND7/view?usp=drive_link',
         image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772354566/DSC_0712_sxgche.jpg',
     },
     {
@@ -62,8 +60,6 @@ export const events: Event[] = [
         ],
         eligibility: 'Open to all students',
         contact: 'sphuran.ees@gmail.com',
-        registrationLink: 'https://forms.gle/EXywr63W2G51euW18',
-        rulebookLink: 'https://drive.google.com/file/d/1tbSzOqWy6bfsKrnFKww6Tnrw4s4tvFyh/view?usp=drive_link',
         image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772354442/DSC_0552_gtblih.jpg',
     },
     {
@@ -85,8 +81,6 @@ export const events: Event[] = [
         ],
         eligibility: 'Open to all students with programming knowledge',
         contact: 'sphuran.ees@gmail.com',
-        registrationLink: 'https://forms.gle/3MZdPAGimgXuWEBa8',
-        rulebookLink: 'https://drive.google.com/file/d/1O2hBZI8ju1eRXqU-XDRUGyyeJE3Vqb59/view?usp=drive_link',
         image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1770563231/coding_uffkpq.svg',
     },
     {
@@ -107,8 +101,6 @@ export const events: Event[] = [
         // ],
         eligibility: 'Open to all students',
         contact: 'sphuran.ees@gmail.com',
-        registrationLink: 'https://forms.gle/oZSa8joMidS44Xah8',
-        rulebookLink: 'https://drive.google.com/file/d/1rwZ1qvLSkV9IiUIJ7o0-432pvVGgF7-j/view?usp=drive_link',
         image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772354777/DSC_0396_q2t4y7.jpg',
     },
     {
@@ -129,8 +121,6 @@ export const events: Event[] = [
         // ],
         eligibility: 'Open to all students',
         contact: 'sphuran.ees@gmail.com',
-        registrationLink: 'https://forms.gle/F9eSz77msEBircj99',
-        rulebookLink: 'https://drive.google.com/file/d/1OSZnw9bYoRUcjqPrW3i-qWP2SgbQ8_ow/view?usp=drive_link',
         image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1772354706/DSC_0421_dxy69q.jpg',
     },
     {
@@ -151,8 +141,6 @@ export const events: Event[] = [
         // ],
         eligibility: 'Open to all gaming enthusiasts',
         contact: 'sphuran.ees@gmail.com',
-        registrationLink: 'https://forms.gle/BxtBHJbJnQ9KFgPRA',
-        rulebookLink: 'https://drive.google.com/file/d/1YI6yoPyJ5EL1OGK_Ad-LKTfcPFSV3RM5/view?usp=drive_link',
         image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1770563231/video_game_n6vibt.svg',
     },
     {
@@ -167,8 +155,6 @@ export const events: Event[] = [
         teamSize: '1 player',
         eligibility: 'Open to all gaming enthusiasts',
         contact: 'sphuran.ees@gmail.com',
-        registrationLink: 'https://forms.gle/tZXSs7U8AReqHXXKA',
-        rulebookLink: 'https://drive.google.com/file/d/1nQyLtT-GhZ3-q5i3e-_UMbqzeE8N0s4D/view?usp=drive_link',
         image: 'https://res.cloudinary.com/dwr8472qb/image/upload/v1770563231/video_game_n6vibt.svg',
     },
     {

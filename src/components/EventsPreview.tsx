@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import EventCard from './EventCard';
 import EventDetailModal from './EventDetailModal';
-import { events, Event } from '@/lib/eventsData';
+import { events as baseEvents, Event } from '@/lib/eventsData';
+import { attachEventLinks } from '@/lib/eventLinksData';
 import { useInView } from '@/hooks/use-in-view';
+
+const events = baseEvents.map(attachEventLinks);
 
 const EventsPreview = memo(() => {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
