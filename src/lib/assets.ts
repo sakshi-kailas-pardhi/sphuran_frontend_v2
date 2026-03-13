@@ -119,7 +119,7 @@ export const GALLERY_IMAGES = [
     src: `https://res.cloudinary.com/dwr8472qb/image/upload/v1772354086/DSC_0031_xp4yqf.jpg`,
     alt: 'Opening Ceremony',
     title: 'Grand Opening',
-    description: 'The spectacular inauguration of SPHURAN 4.0'
+    description: 'The spectacular inauguration of SPHURAN 2.0'
   },
   {
     src: `https://res.cloudinary.com/dwr8472qb/image/upload/v1772354640/DSC_0924_pouhwk.jpg`,
@@ -148,7 +148,7 @@ export const GALLERY_IMAGES = [
   {
     src: `https://res.cloudinary.com/dwr8472qb/image/upload/v1772354566/DSC_0712_sxgche.jpg`,
     alt: 'ELECTROQUIP',
-    title: 'ELECTROQUIP 2022',
+    title: 'ELECTROQUIP | SPHURAN 2.0',
     description: 'Showcasing the best of technical exhibitions and projects'
   },
   {
