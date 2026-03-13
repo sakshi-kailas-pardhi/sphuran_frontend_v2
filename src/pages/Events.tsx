@@ -156,8 +156,8 @@ const Events = memo(() => {
                       ELECTROQUIP
                     </h2>
                     <p className="font-body text-muted-foreground mt-4 leading-relaxed">
-                      An industry-collaborated quiz that tests core Electrical Engineering concepts like machines, 
-                      power systems, and control systems. Compete for prizes and recognition as a top performer.
+                      The stakes are high and the voltage is rising! As part of SPHURAN 4.0, the Electrical Engineering Society presents
+                      ELECTROQUIP—the ultimate technical quiz for those who think they know everything about the world of electricity and beyond.
                     </p>
                      <button 
                       onClick={handleFlagshipClick}
