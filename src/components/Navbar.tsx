@@ -258,7 +258,7 @@ const Navbar = memo(() => {
             </div> */}
 
             {/* Live Badge - Center */}
-            <div className="flex items-center gap-3 px-5 py-2 rounded-full border border-red-500/40 bg-red-500/10">
+            {/* <div className="flex items-center gap-3 px-5 py-2 rounded-full border border-red-500/40 bg-red-500/10">
               <span className="relative flex h-3 w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500" />
@@ -266,7 +266,7 @@ const Navbar = memo(() => {
               <span className="font-display text-sm tracking-[0.25em] uppercase text-red-400 font-bold">
                 Event is Live
               </span>
-            </div>
+            </div> */}
 
             {/* CTA Button - Hidden on mobile */}
             <div className="hidden lg:flex items-center gap-4">
