@@ -237,7 +237,7 @@ const Sponsor = () => {
   <div className="flex justify-center">
     <div className="bg-card border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-all">
       <img
-        src="/sponsors/powergrid_logo.png"
+        src="/sponsors/POWERGRID_logo.jpeg"
         alt="PowerGrid"
         className="h-24 md:h-32 object-contain mx-auto"
       />
