@@ -228,6 +228,28 @@ const Sponsor = () => {
           </div>
         </div>
 
+{/* Title Sponsor Section */}
+<div className="mb-20">
+  <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-8 text-center">
+    Title Sponsor
+  </h2>
+
+  <div className="flex justify-center">
+    <div className="bg-card border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-all">
+      <img
+        src="/sponsors/powergrid.png"
+        alt="PowerGrid"
+        className="h-24 md:h-32 object-contain mx-auto"
+      />
+      <p className="text-center mt-4 font-semibold text-lg">
+        PowerGrid
+      </p>
+    </div>
+  </div>
+</div>
+
+
+        
         {/* Past Sponsors Section */}
         <div 
           ref={pastSponsorsRef.ref}
